@@ -19,6 +19,11 @@
           {% endif %}
           <span class="product__price--new h4">{{ product.price | money }}</span>
         </div>
+        {% if section.settings.add-button %}
+          <button class="product__btn btn w-100" type="submit">
+            Add to card
+          </button>
+        {% endif %}
       </div>
     </div>
   </a>

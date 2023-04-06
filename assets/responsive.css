@@ -179,6 +179,16 @@
         align-items: flex-end;
         justify-content: flex-end;
     }
+
+    /* image-text */
+    .image-text__text {
+        padding: 40px;
+    }
+
+    .image-text__container {
+    grid-template-columns: 1fr 1fr;
+}
+    
 }
 
 @media (min-width: 992px) {

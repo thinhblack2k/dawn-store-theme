@@ -47,6 +47,14 @@
     display: flex;
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
 .flex-1 {
     flex: 1;
 }

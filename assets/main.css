@@ -110,6 +110,7 @@ h6,
 
 .btn__link {
   border: none;
+  padding: 16px 0;
   text-decoration: revert !important;
   background-color: transparent;
   color: var(--color-text-dark);
@@ -545,6 +546,10 @@ h6,
     margin-bottom: calc(24px - var(--gutter) * 2);
 }
 
+.product__btn {
+    background-color: transparent;
+}
+
 /* style image */
 .adapt-image {
 
@@ -561,4 +566,37 @@ h6,
 .btn__view--all {
     margin-top: var(--vertical-space);
 }
+
+/* === image with text === */
+.image-text__container {
+    grid-template-columns: 1fr;
+    background-color: var(--background-2);
+}
+
+.image-text__media {
+
+}
+
+.image-text__text {
+    padding: 32px;
+}
+
+.image-text__content {
+    
+}
+
+.image-text__title {
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.image-text__context {
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.image-text__btn {
+
+}
+
 
