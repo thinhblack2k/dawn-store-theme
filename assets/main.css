@@ -129,6 +129,23 @@ h6,
   color: var(--color-text-light) !important;
 }
 
+/* === image ratio === */
+.adapt-image {
+
+}
+
+.small-image {
+    aspect-ratio: 4/3;
+}
+
+.medium-image {
+    aspect-ratio: 1
+}
+
+.large-image {
+    aspect-ratio: 3/4
+}
+
 /* === header === */
 .header {
     position: relative;
@@ -269,7 +286,6 @@ h6,
 
 .header__footer {
     padding: 32px;
-    background-color: var(--background-2);
 }
 
 .person-login {
@@ -569,20 +585,12 @@ h6,
 
 /* === image with text === */
 .image-text__container {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
     background-color: var(--background-2);
-}
-
-.image-text__media {
-
 }
 
 .image-text__text {
     padding: 32px;
-}
-
-.image-text__content {
-    
 }
 
 .image-text__title {
@@ -591,6 +599,7 @@ h6,
 }
 
 .image-text__context {
+    opacity: 0.75;
     margin: 0;
     margin-bottom: 16px;
 }

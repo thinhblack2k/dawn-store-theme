@@ -185,9 +185,14 @@
         padding: 40px;
     }
 
-    .image-text__container {
-    grid-template-columns: 1fr 1fr;
-}
+    .image-text__no-reverse {
+        
+    }
+
+    .image-text__reverse {
+        flex-direction: row-reverse;
+    }
+
     
 }
 

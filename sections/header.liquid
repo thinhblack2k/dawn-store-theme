@@ -133,6 +133,11 @@
 </style>
 
 <script>
+  /*
+  * Hàm xử lý phần header
+  * Author: THINHDH(06/04/2023)
+  */
+  
   const menuBtn = document.querySelector('.navbar__icons');
   const menuNav = document.querySelector('.header__nav');
   const overlay = document.querySelector('.header-nav-overlay');
@@ -172,11 +177,13 @@
   }
 
   var heightAnnoucement = getHeightAnnoucement();
+  console.log(heightAnnoucement + headerTag.clientHeight);
   overlay.style.top = heightAnnoucement;
 
   heightHeader = 'calc(100vh - ' + heightAnnoucement.toString() + 'px - ' + headerTag.clientHeight.toString() + 'px)';
 
-  var heighNav = heightHeader;
+  console.log(heightHeader);
+
   headerNav.style.height = heightHeader;
 </script>
 

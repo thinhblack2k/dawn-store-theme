@@ -1,17 +1,42 @@
 <div class="container pd-section">
-  <div class="image-text__container d-grid">
-    <div class="image-text__media">
+  <div class="image-text__container d-flex {{ section.settings.image-placement }}">
+    <div
+      class="image-text__media {{ section.settings.image-height }}"
+      style="--w-md:{{ section.settings.image-width }};"
+    >
       {% if section.settings['image-item'] != blank %}
-        <img class="w-100 h-100 d-block object-fit-cover" src="{{ section.settings.image-item | img_url: '2000x' }}" alt="image text">
+        <img
+          src="{{ section.settings.image-item | img_url: '2000x' }}"
+          class="w-100 h-100 object-fit-cover d-block"
+          alt=""
+        >
       {% else %}
-        {% render 'image-placeholder' %}
+        {{ 'image' | placeholder_svg_tag }}
       {% endif %}
     </div>
-    <div class="image-text__text w-100 h-100 d-flex align-center">
-      <div class="image-text__content">
-        <h2 class="image-text__title h2">Image text</h2>
-        <p class="image-text__context h4">Nội dung cần hiển thị</p>
-        <a href="#" class="image-text__btn btn btn__outline">Button</a>
+    <div
+      class="image-text__text {{ section.settings.background-color }}"
+      style="--w-md:calc(12 - {{ section.settings.image-width }});"
+    >
+      <div class="image-text__box h-100 d-flex {{ section.settings.content_position }}">
+        <div class="image-text__content {{ section.settings.content_align }}">
+          {% for item in section.blocks %}
+            {% case item.type %}
+              {% when 'heading' %}
+                <h2 class="image-text__title {{ item.settings.heading-size }}">{{ item.settings.heading }}</h2>
+              {% when 'description' %}
+                {% if item.settings.description != blank %}
+                  <p class="image-text__context h4">{{ item.settings.description }}</p>
+                {% endif %}
+              {% when 'button' %}
+                {% if item.settings.button_url != blank %}
+                  <a href="{{ item.settings.button_url }}" class="image-text__btn btn {{ item.settings.style-btn }}">
+                    {{- item.settings.button_label -}}
+                  </a>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
@@ -27,6 +52,158 @@
       "type": "image_picker",
       "id": "image-item",
       "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image-height",
+      "label": "Image height",
+      "options": [
+        {
+          "value": "adapt-image",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small-image",
+          "label": "Small"
+        },
+        {
+          "value": "medium-image",
+          "label": "Medium"
+        },
+        {
+          "value": "large-image",
+          "label": "Large"
+        }
+      ],
+      "default": "adapt-image"
+    },
+    {
+      "type": "select",
+      "id": "image-width",
+      "label": "Desktop image width",
+      "options": [
+        {
+          "value": "4",
+          "label": "Small"
+        },
+        {
+          "value": "6",
+          "label": "Medium"
+        },
+        {
+          "value": "8",
+          "label": "Large"
+        }
+      ],
+      "default": "6"
+    },
+    {
+      "type": "select",
+      "id": "image-placement",
+      "label": "Desktop image placement",
+      "options": [
+        {
+          "value": "image-text__no-reverse",
+          "label": "Image first"
+        },
+        {
+          "value": "image-text__reverse",
+          "label": "Image second"
+        }
+      ],
+      "default": "image-text__no-reverse"
+    },
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-2"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Desktop content position",
+      "options": [
+        {
+          "value": "content__top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "content__top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "content__top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "content__middle-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "content__middle-center",
+          "label": "Middle center"
+        },
+        {
+          "value": "content__middle-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "content__bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "content__bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "content__bottom-right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "content__middle-center"
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Desktop content align",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-left"
     }
   ],
   "max_blocks": 3,
@@ -58,7 +235,7 @@
               "label": "small"
             }
           ],
-          "default": "h1",
+          "default": "h2",
           "label": "Heading size"
         }
       ]
@@ -90,13 +267,44 @@
           "type": "url",
           "id": "button_url",
           "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "style-btn",
+          "label": "Button style",
+          "options": [
+            {
+              "value": "btn__link",
+              "label": "Link"
+            },
+            {
+              "value": "btn__outline",
+              "label": "Outline"
+            },
+            {
+              "value": "btn__solid",
+              "label": "Solid"
+            }
+          ],
+          "default": "btn__solid"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Image text"
+      "name": "Image text",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "button"
+        }
+      ]
     }
   ]
 }
