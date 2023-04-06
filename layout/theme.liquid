@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="">
+    <meta name="author" content="thinhdh">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <!-- start google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <!-- end google font -->
+    <title>Dawn Theme</title>
+    {{ content_for_header }}
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'layout.css' | asset_url | stylesheet_tag }}
+    {{ 'helper.css' | asset_url | stylesheet_tag }}
+    {{ 'responsive.css' | asset_url | stylesheet_tag }}
+    
+    <style>
+        :root {
+            --font-name: {{ settings.font_body }};
+            --color-text-light: {{ settings.color-text-light }};
+            --color-text-dark: {{ settings.color-text-dark }};
+            --accent-1: {{ settings.color-accent-1 }};
+            --accent-2: {{ settings.color-accent-2 }};
+            --background-default: {{ settings.color-background-default }};
+            --background-1: {{ settings.color-background-1 }};
+            --background-2: {{ settings.color-background-2 }};
+            --page-width: {{ settings.page_width }}px;
+            --space-section: {{ settings.space_section }}px;
+            --btn-radius: {{ settings.btn-radius }}px;
+            --horizontal-space: {{ settings.horizontal-space }}px;
+            --vertical-space: {{ settings.vertical-space }}px;
+            --gutter: calc(var(--horizontal-space) / 2);
+            --pd-section-mobile: {{ settings.pd-section-mobile }}px;
+            --pd-section-desktop: {{ settings.pd-section-desktop }}px;
+            --pd-image: {{ settings.pd-image }}px;
+        }
+
+        .product-standard {
+            background-color: transparent!important;
+        }
+
+        .product-card {
+            border: solid {{ settings.thickness }}px var(--background-1);
+            border-radius: {{ settings.corner-radius }}px;
+            overflow: hidden;
+        }
+
+        .btn {
+            border-radius: var(--btn-radius);
+        }
+
+        .background-default {
+            background-color: var(--background-default);
+            color: var(--color-text-dark);
+        }
+
+        .background-default .btn {
+            color: var(--color-text-dark);
+        }
+
+        .accent-1 {
+            background-color: var(--accent-1);
+            color: var(--color-text-light);
+        }
+
+        .accent-1 .btn {
+            border: solid 1px var(--color-text-light);
+            color: var(--color-text-light);
+        }
+
+        .accent-2 {
+            background-color: var(--accent-2);
+            color: var(--color-text-light);
+        }
+
+        .accent-2 .btn {
+            border: solid 1px var(--color-text-light);
+            color: var(--color-text-light);
+        }
+
+        .background-1 {
+            background-color: var(--background-1);
+            color: var(--color-text-dark);
+        }
+
+        .background-1 .btn {
+            border: solid 1px var(--color-text-dark);
+            color: var(--color-text-dark);
+        }
+
+        .background-2 {
+            background-color: var(--background-2);
+            color: var(--color-text-dark);
+        }
+
+        .background-2 .btn {
+            border: solid 1px var(--color-text-dark);
+            color: var(--color-text-dark);
+        }
+    </style>
+    
+    <body>
+        {% sections "header-group" %}
+        <main>
+            {{ content_for_layout }}
+        </main>
+        {% section "footer" %}
+    </body>
+</html>

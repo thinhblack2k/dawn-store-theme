@@ -1,0 +1,50 @@
+<div class="header__topbar">
+  <div class="container {{ section.settings.text-align }}">
+    <p class="h5">{{ section.settings['text-content'] }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "div",
+  "class": "announcement-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text-content",
+      "label": "Content",
+      "default": "Welcome to store"
+    },
+    {
+      "type": "select",
+      "id": "text-align",
+      "label": "Text align",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-center"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["*"],
+    "groups": ["header-group"]
+  },
+  "presets": [
+    {
+      "name": "Annoucement"
+    }
+  ]
+}
+{% endschema %}

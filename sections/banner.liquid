@@ -1,0 +1,382 @@
+<div class="banner__box d-flex p-relative {{ section.settings.banner_height }} w-100">
+  {% if section.settings.first_image != blank or section.settings.second_image != blank %}
+    {% if section.settings.first_image != blank and section.settings.second_image != blank %}
+      <div class="image__banner image__item p-absolute" style="--w:6;">
+        <img
+          class="w-100 h-100 d-block object-fit-cover"
+          src=" {{ section.settings.first_image | img_url: '2000x' }} "
+          alt="banner1"
+        >
+      </div>
+      <div class="image__banner image__item p-absolute" style="--w:6;">
+        <img
+          class="w-100 h-100 d-block object-fit-cover"
+          src=" {{ section.settings.second_image | img_url: '2000x' }} "
+          alt="banner2"
+        >
+      </div>
+    {% elsif section.settings.first_image != blank %}
+      <div class="image__banner image__item h-100 p-absolute" style="--w: 12;">
+        <img
+          class="w-100 h-100 d-block object-fit-cover"
+          src=" {{ section.settings.first_image | img_url: '2000x' }} "
+          alt="banner1"
+        >
+      </div>
+    {% else %}
+      <div class="image__banner image__item h-100 p-absolute" style="--w: 12;">
+        <img
+          class="w-100 h-100 d-block object-fit-cover"
+          src=" {{ section.settings.second_image | img_url: '2000x' }} "
+          alt="banner2"
+        >
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="image__banner image__item h-100 p-absolute" style="--w: 12;">
+      {{ 'lifestyle-2' | placeholder_svg_tag }}
+    </div>
+  {% endif %}
+
+  <div class="banner__overlay p-absolute"></div>
+
+  <div class="container d-flex {{ section.settings.content_position }}">
+    <div class="banner__container">
+      <div
+        class="
+          banner__content {{ section.settings.content_align }}
+          {%- if section.settings.show_container == true -%}
+            {{ section.settings.background-color }}
+          {% else %}
+          hidden__content
+          {%- endif -%}
+        "
+      >
+        {% for item in section.blocks %}
+          {% case item.type %}
+            {% when 'heading' %}
+              <h2 class="banner__heading {{ item.settings.heading-size }} ">{{ item.settings['heading-banner'] }}</h2>
+            {% when 'description' %}
+              <span class="banner__description">
+                {{ item.settings.description }}
+              </span>
+            {% when 'button' %}
+              {% if item.settings.button_url != blank %}
+                <a href="{{ item.settings.button_url }}" class="btn banner__btn">{{ item.settings.button_label }}</a>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .banner__overlay {
+        background-color: var(--color-black);
+        opacity: {{ section.settings.opacity }}%;
+    }
+
+    .banner__content {
+      color: var(--color-text-light);
+    }
+
+    .banner__content .banner__btn {
+      color: var(--color-text-light);
+      border: solid 1px var(--color-text-light);
+    }
+
+
+    .hidden__content {
+      color: var(--color-text-light);
+    }
+
+    .hidden__content .banner__btn {
+      color: var(--color-text-light);
+      border: solid 1px var(--color-text-light);
+    }
+
+    @media (min-width: 768px) {
+      .background-default-desktop {
+          background-color: var(--background-default) !important;
+          color: var(--color-text-dark) !important;
+      }
+
+      .background-default-desktop .btn {
+          color: var(--color-text-dark) !important;
+      }
+
+      .accent-1-desktop {
+          background-color: var(--accent-1) !important;
+          color: var(--color-text-light) !important;
+      }
+
+      .accent-1-desktop .btn {
+          border: solid 1px var(--color-text-light) !important;
+          color: var(--color-text-light);
+      }
+
+      .accent-2-desktop {
+          background-color: var(--accent-2) !important;
+          color: var(--color-text-light) !important;
+      }
+
+      .accent-2-desktop .btn {
+          border: solid 1px var(--color-text-light) !important;
+          color: var(--color-text-light) !important;
+      }
+
+      .background-1-desktop {
+          background-color: var(--background-1) !important;
+          color: var(--color-text-dark);
+      }
+
+      .background-1-desktop .btn {
+          border: solid 1px var(--color-text-dark) !important;
+          color: var(--color-text-dark);
+      }
+
+      .background-2-desktop {
+          background-color: var(--background-2) !important;
+          color: var(--color-text-dark) !important;
+      }
+
+      .background-2-desktop .btn {
+          border: solid 1px var(--color-text-dark) !important;
+          color: var(--color-text-dark) !important;
+      }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "banner",
+  "tag": "section",
+  "class": "banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "first_image",
+      "label": "First image"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_image",
+      "label": "Second image"
+    },
+    {
+      "type": "range",
+      "id": "opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "select",
+      "id": "banner_height",
+      "label": "banner height",
+      "options": [
+        {
+          "value": "banner__small",
+          "label": "Small"
+        },
+        {
+          "value": "banner__medium",
+          "label": "Medium"
+        },
+        {
+          "value": "banner__large",
+          "label": "Large"
+        }
+      ],
+      "default": "banner__medium"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Desktop content position",
+      "options": [
+        {
+          "value": "content__top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "content__top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "content__top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "content__middle-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "content__middle-center",
+          "label": "Middle center"
+        },
+        {
+          "value": "content__middle-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "content__bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "content__bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "content__bottom-right",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "content__middle-center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_container",
+      "label": "Show container on desktop",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Desktop content align",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default-desktop",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1-desktop",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2-desktop",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1-desktop",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2-desktop",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default-desktop"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Heading banner",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading-banner",
+          "label": "Heading",
+          "default": "Image banner"
+        },
+        {
+          "type": "select",
+          "id": "heading-size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "large"
+            },
+            {
+              "value": "h2",
+              "label": "medium"
+            },
+            {
+              "value": "h3",
+              "label": "small"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading size"
+        }
+      ]
+    },
+    {
+      "name": "Description",
+      "type": "description",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "Give customers details about the banner image(s) or content on the template."
+        }
+      ]
+    },
+    {
+      "name": "Buttons",
+      "type": "button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

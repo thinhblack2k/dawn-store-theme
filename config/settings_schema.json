@@ -1,0 +1,273 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Dawn",
+        "theme_version": "8.0.0",
+        "theme_author": "Shopify",
+        "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+        "theme_support_url": "https://support.shopify.com/"
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "font_picker",
+                "id": "font_body",
+                "label": "Font body",
+                "default": "helvetica_n4"
+            }
+        ]
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Text color"
+            },
+            {
+                "type": "color",
+                "id": "color-text-light",
+                "label": "Text light",
+                "default": "#ffffff",
+                "info": "Used for text."
+            },
+            {
+                "type": "color",
+                "id": "color-text-dark",
+                "label": "Text dark",
+                "default": "#121212",
+                "info": "Used for text."
+            },
+            {
+                "type": "header",
+                "content": "Background color"
+            },
+            {
+                "type": "color",
+                "id": "color-background-default",
+                "label": "Background default",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "color-accent-1",
+                "label": "Accent 1",
+                "default": "#000000",
+                "info": "Used for solid button."
+            },
+            {
+                "type": "color",
+                "id": "color-accent-2",
+                "label": "Accent 2",
+                "default": "#3752B2"
+            },
+            {
+                "type": "color",
+                "id": "color-background-1",
+                "label": "Background 1",
+                "default": "#D0D0D0"
+            },
+            {
+                "type": "color",
+                "id": "color-background-2",
+                "label": "Background 2",
+                "default": "#F0F0F0"
+            }
+        ]
+    },
+    {
+        "name": "Layout",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Page"
+            },
+            {
+                "type": "range",
+                "id": "page_width",
+                "label": "Page width",
+                "min": 1000,
+                "max": 1600,
+                "step": 100,
+                "default": 1200
+            },
+            {
+                "type": "range",
+                "id": "space_section",
+                "label": "Space between template sections",
+                "min": 0,
+                "max": 100,
+                "step": 4,
+                "default": 20
+            },
+            {
+                "type": "header",
+                "content": "Layout desktop"
+            },
+            {
+                "type": "range",
+                "id": "pd-section-desktop",
+                "label": "Section space",
+                "min": 0,
+                "max": 100,
+                "step": 2,
+                "unit": "px",
+                "default": 30
+            },
+            {
+                "type": "range",
+                "id": "horizontal-space",
+                "label": "Horizontal space",
+                "min": 0,
+                "max": 40,
+                "step": 2,
+                "unit": "px",
+                "default": 10
+            },
+            {
+                "type": "range",
+                "id": "vertical-space",
+                "label": "Verticak space",
+                "min": 0,
+                "max": 40,
+                "step": 2,
+                "unit": "px",
+                "default": 10
+            },
+            {
+                "type": "header",
+                "content": "layout mobile"
+            },
+            {
+                "type": "range",
+                "id": "pd-section-mobile",
+                "label": "Section space",
+                "min": 0,
+                "max": 100,
+                "step": 2,
+                "unit": "px",
+                "default": 20
+            }
+        ]
+    },
+    {
+        "name": "button",
+        "settings": [
+            {
+                "type": "range",
+                "id": "btn-radius",
+                "label": "Border radius",
+                "min": 0,
+                "max": 40,
+                "step": 2,
+                "unit": "px",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "Product cards",
+        "settings": [
+            {
+                "type": "select",
+                "id": "style-card",
+                "label": "Style",
+                "options": [
+                    {
+                        "value": "product-standard",
+                        "label": "Standard"
+                    },
+                    {
+                        "value": "product-card",
+                        "label": "Card"
+                    }
+                ],
+                "default": "product-standard"
+            },
+            {
+                "type": "range",
+                "id": "pd-image",
+                "label": "Image padding",
+                "min": 0,
+                "max": 20,
+                "step": 2,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "select",
+                "id": "text-align",
+                "label": "Style",
+                "options": [
+                    {
+                        "value": "text-left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "text-center",
+                        "label": "Center"
+                    },
+                    {
+                        "value": "text-right",
+                        "label": "Right"
+                    }
+                ],
+                "default": "text-left"
+            },
+            {
+                "type": "select",
+                "id": "background-color-card",
+                "label": "Color scheme",
+                "options": [
+                  {
+                    "value": "background-default",
+                    "label": "Background default"
+                  },
+                  {
+                    "value": "accent-1",
+                    "label": "Accent 1"
+                  },
+                  {
+                    "value": "accent-2",
+                    "label": "Accent 2"
+                  },
+                  {
+                    "value": "background-1",
+                    "label": "Background 1"
+                  },
+                  {
+                    "value": "background-2",
+                    "label": "Background 2"
+                  }
+                ],
+                "default": "background-2"
+            },
+            {
+                "type": "header",
+                "content": "Border"
+            },
+            {
+                "type": "range",
+                "id": "thickness",
+                "label": "Thickness",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "corner-radius",
+                "label": "Corner radius",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            }
+        ]
+    }
+    
+]

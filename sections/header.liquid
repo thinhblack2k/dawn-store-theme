@@ -1,0 +1,275 @@
+<div class="container">
+  <div class="header__container d-grid {{ section.settings.desktop-logo-postion }}">
+    <!-- menu button -->
+    <div class="header__btn md-none d-flex align-center">
+      <div class="navbar__icons">
+        <div class="navbar__icon"></div>
+      </div>
+    </div>
+    <div class="header__logo d-flex justify-center align-center">
+      <a href="#" class="d-inline-block">
+        {% if section.settings['image-logo'] != blank %}
+          <img class="d-block w-100" src="{{ section.settings.image-logo | img_url: 'medium' }}" alt="Logo">
+        {% else %}
+          <span class="title__logo">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+    <nav class="header__nav space-between d-flex">
+      <ul class="nav__list md-flex">
+        <li class="nav__item md-none">
+          <a href="#" class="nav__anchor" style="content: ''; "></a>
+        </li>
+        {% for link in section.settings.menu_link.links %}
+          {% if link.links != blank %}
+            <li class="nav__item nav__items h7">
+              <span
+                class="nav__anchor p-relative h7 d-flex align-center space-between w-100 cursor-pointer"
+                href="#"
+              >
+                {{ link.title }}
+                <img class="md-none" src="{{ "icon-nextlink.svg" | asset_url }}" alt="">
+                <img
+                  class="d-none md-block"
+                  src="{{ "icon-chevron-down.svg" | asset_url }}"
+                  alt=""
+                  style="margin-left: 8px"
+                >
+              </span>
+              <ul class="header__subnav p-absolute">
+                <li class="nav__item md-none h5">
+                  <span href="#" class="nav__anchor cursor-pointer d-flex align-center" style="content: '';">
+                    <img class="md-none" src="{{ "arrow-left.svg" | asset_url }}" alt="" style="margin-right: 8px;">
+                    {{ link.title }}
+                  </span>
+                </li>
+                {% for child in link.links %}
+                  <li class="nav__item">
+                    <a class="nav__anchor h7 d-flex align-center space-between" href="{{ child.url }}">
+                      {{ child.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav__item">
+              <a class="nav__anchor h7 d-flex align-center space-between" href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="flex-1"></div>
+      <div class="header__footer md-none">
+        <div class="person-login d-flex align-center">
+          <img src="{{ "icon-person.svg" | asset_url }}" alt="person">
+          <span>Log in</span>
+        </div>
+        <ul class="social__items d-flex">
+          <li class="social__item">
+            <a href="#">
+              <img src="{{ "twitter.svg" | asset_url }}" alt="">
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#">
+              <img src="{{ "facebook.svg" | asset_url }}" alt="">
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#">
+              <img src="{{ "instagram.svg" | asset_url }}" alt="">
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#">
+              <img src="{{ "tiktok.svg" | asset_url }}" alt="">
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#">
+              <img src="{{ "youtube.svg" | asset_url }}" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="header__action d-flex align-center">
+      <div class="header__action--item d-flex align-center">
+        <a class="header__action--link d-inline-block" href="#">
+          <img class="action__icon d-block" src="{{ 'icon-search.svg' | asset_url }}" alt="search">
+        </a>
+      </div>
+      <div class="header__action--item align-center d-none md-flex">
+        <a class="header__action--link d-inline-block" href="#">
+          <img class="action__icon d-block" src="{{ 'icon-person.svg' | asset_url }}" alt="person">
+        </a>
+      </div>
+      <div class="header__action--item d-flex align-center">
+        <a class="header__action--link d-inline-block" href="#">
+          <img class="action__icon d-block" src="{{ 'icon-cart.svg' | asset_url }}" alt="cart">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="header-nav-overlay"></div>
+
+<style>
+  .header__logo img {
+    max-width: {{ section.settings.logo-size }}px;
+  }
+
+  .header {
+    margin-bottom: {{ section.settings.mg-bottom }}px;
+  }
+
+  .header__container {
+    padding-top: {{ section.settings.pd-top }}px;
+    padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+</style>
+
+<script>
+  const menuBtn = document.querySelector('.navbar__icons');
+  const menuNav = document.querySelector('.header__nav');
+  const overlay = document.querySelector('.header-nav-overlay');
+  const subnavItems = document.querySelectorAll('.nav__items');
+  const headerTag = document.querySelector('.header');
+  const headerNav = document.querySelector('.header__nav');
+  const body = document.querySelector('body');
+  const topbar = document.querySelectorAll('.header__topbar .container.text-center');
+
+  menuBtn.addEventListener('click', function () {
+    menuBtn.classList.toggle('open');
+    menuNav.classList.toggle('active');
+    overlay.classList.toggle('open');
+    body.classList.toggle('hidden');
+  });
+
+  overlay.addEventListener('click', function () {
+    menuBtn.classList.toggle('open');
+    menuNav.classList.toggle('active');
+    overlay.classList.toggle('open');
+    body.classList.toggle('hidden');
+  });
+
+  for (i = 0; i < subnavItems.length; i++) {
+    subnavItems[i].addEventListener('click', function () {
+      this.classList.toggle('open');
+    });
+  }
+
+  function getHeightAnnoucement() {
+    var height = 0;
+    for (i = 0; i < topbar.length; i++)
+    {
+      height = height +  topbar[i].clientHeight;
+    }
+    return height;
+  }
+
+  var heightAnnoucement = getHeightAnnoucement();
+  overlay.style.top = heightAnnoucement;
+
+  heightHeader = 'calc(100vh - ' + heightAnnoucement.toString() + 'px - ' + headerTag.clientHeight.toString() + 'px)';
+
+  var heighNav = heightHeader;
+  headerNav.style.height = heightHeader;
+</script>
+
+{% schema %}
+{
+  "name": "header",
+  "tag": "header",
+  "class": "header",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "image-logo",
+      "label": "Image logo"
+    },
+    {
+      "type": "range",
+      "id": "logo-size",
+      "label": "Logo size",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "select",
+      "id": "desktop-logo-postion",
+      "label": "Desktop logo position",
+      "options": [
+        {
+          "value": "top-center",
+          "label": "Top left"
+        },
+        {
+          "value": "middle-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "middle-center",
+          "label": "Middle center"
+        }
+      ],
+      "default": "middle-left"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_link",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "mg-bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ]
+}
+{% endschema %}
