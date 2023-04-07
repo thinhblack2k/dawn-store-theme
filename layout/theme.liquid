@@ -40,10 +40,6 @@
             --pd-image: {{ settings.pd-image }}px;
         }
 
-        .product-standard {
-            background-color: transparent!important;
-        }
-
         .product-card {
             border: solid {{ settings.thickness }}px var(--background-1);
             border-radius: {{ settings.corner-radius }}px;
@@ -55,52 +51,42 @@
         }
 
         .background-default {
-            background-color: var(--background-default);
-            color: var(--color-text-dark);
-        }
-
-        .background-default .btn {
-            color: var(--color-text-dark);
+            --color-bg: var(--background-default);
+            --color-txt: var(--color-text-dark);
+            --color-bd: var(--color-text-dark);
+            --color-svg: sepia(1);
         }
 
         .accent-1 {
-            background-color: var(--accent-1);
-            color: var(--color-text-light);
-        }
-
-        .accent-1 .btn {
-            border: solid 1px var(--color-text-light);
-            color: var(--color-text-light);
+            --color-bg: var(--accent-1);
+            --color-txt: var(--color-text-light);
+            --color-bd: var(--color-text-light);
+            --color-svg: invert(1);
         }
 
         .accent-2 {
-            background-color: var(--accent-2);
-            color: var(--color-text-light);
-        }
-
-        .accent-2 .btn {
-            border: solid 1px var(--color-text-light);
-            color: var(--color-text-light);
+            --color-bg: var(--accent-2);
+            --color-txt: var(--color-text-light);
+            --color-bd: var(--color-text-light);
+            --color-svg: invert(1);
         }
 
         .background-1 {
-            background-color: var(--background-1);
-            color: var(--color-text-dark);
-        }
-
-        .background-1 .btn {
-            border: solid 1px var(--color-text-dark);
-            color: var(--color-text-dark);
+            --color-bg: var(--background-1);
+            --color-txt: var(--color-text-dark);
+            --color-bd: var(--color-text-dark);
+            --color-svg: sepia(1);
         }
 
         .background-2 {
-            background-color: var(--background-2);
-            color: var(--color-text-dark);
+            --color-bg: var(--background-2);
+            --color-txt: var(--color-text-dark);
+            --color-bd: var(--color-text-dark);
+            --color-svg: sepia(1);
         }
 
-        .background-2 .btn {
-            border: solid 1px var(--color-text-dark);
-            color: var(--color-text-dark);
+        .product-standard {
+            background-color: transparent!important;
         }
     </style>
     

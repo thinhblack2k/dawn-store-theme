@@ -1,30 +1,27 @@
-<div class="product__card h-100 {{ settings.style-card }} {{ settings.background-color-card }}">
-  <a href="{{ product.url }}">
-    <div class="product__item {{ settings.text-align }} ">
-      <div class="product__image p-relative {{ section.settings.image-ratio }}">
-        <img
-          class="w-100 h-100 d-block object-fit-cover"
-          src="{{ product.featured_image | img_url: '1200x' }}"
-          alt="product"
-        >
-        {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
-          <span class="product__sale heading-6 p-absolute"> Sale </span>
-        {%- endif -%}
-      </div>
-      <div class="product__info">
-        <h3 class="product__name h5">{{ product.title }}</h3>
-        <div class="product__price align-center">
-          {% if product.compare_at_price != blank %}
-            <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
-          {% endif %}
-          <span class="product__price--new h4">{{ product.price | money }}</span>
-        </div>
-        {% if section.settings.add-button %}
-          <button class="product__btn btn w-100" type="submit">
-            Add to card
-          </button>
-        {% endif %}
-      </div>
+<a href="{{ product.url }}">
+  <div class="product__card h-100 d-flex flex-column {{ settings.style-card }}">
+    <div class="product__image p-relative {{ section.settings.image-ratio }}">
+      <img
+        class="w-100 h-100 d-block object-fit-cover"
+        src="{{ product.featured_image | img_url: '1200x' }}"
+        alt="product"
+      >
+      {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
+        <span class="product__sale heading-6 p-absolute"> Sale </span>
+      {%- endif -%}
     </div>
-  </a>
-</div>
+    <div class="product__info d-flex flex-column flex-1">
+      <h3 class="product__name h5">{{ product.title }}</h3>
+      <div class="product__price align-center">
+        {% if product.compare_at_price != blank %}
+          <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
+        {% endif %}
+        <span class="product__price--new h4">{{ product.price | money }}</span>
+      </div>
+      <div class="flex-1"></div>
+      {% if section.settings['add-button'] %}
+        <button class="product__btn btn w-100" type="submit">Add to card</button>
+      {% endif %}
+    </div>
+  </div>
+</a>

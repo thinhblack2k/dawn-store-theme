@@ -113,20 +113,20 @@ h6,
   padding: 16px 0;
   text-decoration: revert !important;
   background-color: transparent;
-  color: var(--color-text-dark);
+  color: var(--color-txt);
 }
 
 .btn__outline {
   text-decoration: none;
   background-color: transparent;
-  border: solid 1px var(--color-text-dark);
-  color: var(--color-text-dark);
+  border: solid 1px var(--color-txt);
+  color: var(--color-txt);
 }
 
 .btn__solid {
   text-decoration: none;
-  background-color: var(--accent-1);
-  color: var(--color-text-light) !important;
+  background-color: var(--color-txt);
+  color: var(--color-bg)!important;
 }
 
 /* === image ratio === */
@@ -153,11 +153,13 @@ h6,
     left: 0;
     right: 0;
     z-index: 10;
-    background-color: var(--color-white);
     box-shadow: #e1e3e5 0px 1px 0px 0px;
+    background-color: var(--color-bg);
 }
 
 .header__topbar {
+    background-color: var(--color-bg);
+    color: var(--color-txt);
     box-shadow: inset 0px -1px 0px #E1E3E5;
 }
 
@@ -170,7 +172,7 @@ h6,
     position: relative;
     top: 0;
     z-index: 10;
-    background-color: var(--color-white);
+    background-color: var(--color-bg);
 }
 
 .header__container {
@@ -195,7 +197,7 @@ h6,
     top: 100%;
     left: 0;
     width: calc(100vw - 40px);
-    background-color: #ffffff;
+    background-color: var(--color-bg);
     flex-direction: column;
     transition: var(--smooth);
     transform: translateX(-100%);
@@ -232,19 +234,20 @@ h6,
     padding: 5px 0;
 }
 
+
 .nav__item .nav__anchor {
     text-decoration: none;
     line-height: 40px;
     padding: 0 32px;
-    color: var(--color-text);
+    color: var(--color-txt);
 }
 
 .nav__item .nav__anchor:hover {
-    background-color: var(--background-2);
+    background-color: var(--background-1);
 }
 
 .header__subnav {
-    background-color: var(--color-white);
+    background-color: var(--color-bg);
     margin: 0;
     padding: 0;
     margin-top: 9px;
@@ -268,15 +271,11 @@ h6,
     text-decoration: none;
     line-height: 40px;
     padding: 0 32px;
-    color: var(--color-text);
+    color: var(--color-txt);
 }
 
-.header__action--item {
-
-}
-
-.header__action--link {
-
+.svg__icon {
+    filter: var(--color-svg);
 }
 
 .header__action {
@@ -316,7 +315,7 @@ h6,
 .navbar__icon {
     width: 18.5px;
     height: 1px;
-    background-color: #333;
+    background-color: var(--color-txt);
     border-radius: 0px;
     position: relative;
     transition: var(--smooth);
@@ -328,7 +327,7 @@ h6,
     position: absolute;
     width: 18.5px;
     height: 1px;
-    background-color: #333;
+    background-color: var(--color-txt);
     border-radius: 0px;
     transition: var(--smooth);
 }
@@ -475,8 +474,13 @@ h6,
 }
 
 /* product */
+.product-list {
+    background-color: var(--color-bg);
+}
+
 .product__title {
     margin-bottom: 25px;
+    color: var(--color-txt);
 }
 
 .product__title h2 {
@@ -489,12 +493,11 @@ h6,
     margin-top: var(--vertical-space);
 }
 
-.product a {
+.product-list a {
     text-decoration: none;
-    color: var(--black-text);
 }
 
-.product .row {
+.product-list .row {
     gap: var(--vertical-space) 0;
 } 
 
@@ -542,11 +545,13 @@ h6,
 .product__name {
     margin: 0;
     margin-top: 4px;
+    color: var(--color-txt);
 }
 
 .product__price {
     word-break: break-all;
     flex-wrap: wrap;
+    color: var(--color-txt);
 }
 
 .product__price--old {
@@ -555,6 +560,7 @@ h6,
     line-height: 1.5;
     letter-spacing: 0.02em;
     margin-right: 10px;
+    color: var(--color-txt);
 }
 
 .product__heading {
@@ -564,6 +570,8 @@ h6,
 
 .product__btn {
     background-color: transparent;
+    color: var(--color-txt);
+    border-color: var(--color-txt);
 }
 
 /* style image */
@@ -584,13 +592,15 @@ h6,
 }
 
 /* === image with text === */
+
 .image-text__container {
     flex-wrap: wrap;
-    background-color: var(--background-2);
+    background-color: var(--color-bg);
 }
 
 .image-text__text {
     padding: 32px;
+    color: var(--color-txt)
 }
 
 .image-text__title {
@@ -605,7 +615,8 @@ h6,
 }
 
 .image-text__btn {
-
+    color: var(--color-txt);
+    border-color:var(--color-txt);
 }
 
 

@@ -1,4 +1,4 @@
-<div class="container pd-section">
+<div class="{{ section.settings.color-scheme }} container pd-section">
   <div class="image-text__container d-flex {{ section.settings.image-placement }}">
     <div
       class="image-text__media {{ section.settings.image-height }}"
@@ -15,7 +15,7 @@
       {% endif %}
     </div>
     <div
-      class="image-text__text {{ section.settings.background-color }}"
+      class="image-text__text"
       style="--w-md:calc(12 - {{ section.settings.image-width }});"
     >
       <div class="image-text__box h-100 d-flex {{ section.settings.content_position }}">
@@ -115,7 +115,7 @@
     },
     {
       "type": "select",
-      "id": "background-color",
+      "id": "color-scheme",
       "label": "Color scheme",
       "options": [
         {

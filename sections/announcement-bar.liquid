@@ -1,4 +1,4 @@
-<div class="header__topbar">
+<div class="header__topbar {{ section.settings.color-scheme }}">
   <div class="container {{ section.settings.text-align }}">
     <p class="h5">{{ section.settings['text-content'] }}</p>
   </div>
@@ -35,12 +35,36 @@
         }
       ],
       "default": "text-center"
+    },
+    {
+      "type": "select",
+      "id": "color-scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
     }
   ],
-  "enabled_on": {
-    "templates": ["*"],
-    "groups": ["header-group"]
-  },
   "presets": [
     {
       "name": "Annoucement"

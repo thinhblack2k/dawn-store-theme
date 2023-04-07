@@ -1,35 +1,37 @@
-<div class="container pd-section {{ section.settings.background-color }}">
-  <div class="row">
-    <div class="col">
-      <div class="product__title">
-        <h2 class="{{ section.settings.heading-size }} ">{{ section.settings.heading_product }}</h2>
-        {% if section.settings.description_product != blank %}
-          <p class="h9">
-            {{ section.settings.description_product }}
-          </p>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    {%- for product in section.settings.list_product.products limit: section.settings['product-limit'] -%}
-      <div class="col" style="--w:6; --w-lg: calc(12 / {{ section.settings.product-row }});">
-        {% render 'product-card', product: product %}
-      </div>
-    {%- endfor -%}
-  </div>
-  {% if section.settings['show-btn'] == true %}
+<div class="product-list {{ section.settings.background-color }}">
+  <div class="container pd-section">
     <div class="row">
       <div class="col">
-        <div class="text-center">
-          <a class="btn btn__view--all {{ section.settings.style-viewall }}" href="collection.html">View all</a>
+        <div class="product__title">
+          <h2 class="{{ section.settings.heading-size }} ">{{ section.settings.heading_product }}</h2>
+          {% if section.settings.description_product != blank %}
+            <p class="h9">
+              {{ section.settings.description_product }}
+            </p>
+          {% endif %}
         </div>
       </div>
     </div>
-  {% endif %}
+    <div class="row">
+      {%- for product in section.settings.list_product.products limit: section.settings['product-limit'] -%}
+        <div class="col" style="--w:6; --w-lg: calc(12 / {{ section.settings.product-row }});">
+          {% render 'product-card', product: product %}
+        </div>
+      {%- endfor -%}
+    </div>
+    {% if section.settings['show-btn'] == true %}
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <a class="btn btn__view--all {{ section.settings.style-viewall }}" href="collection.html">View all</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
 </div>
 <style>
-  .product {
+  .feature-collection {
     padding-top: {{ section.settings.pd-top }}px;
     padding-bottom: {{ section.settings.pd-bottom }}px;
   }
@@ -44,7 +46,7 @@
 {
   "name": "Featured collection",
   "tag": "section",
-  "class": "product",
+  "class": "feature-collection",
   "settings": [
     {
       "type": "text",
