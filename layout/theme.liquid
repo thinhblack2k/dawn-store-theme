@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -38,10 +37,13 @@
             --pd-section-mobile: {{ settings.pd-section-mobile }}px;
             --pd-section-desktop: {{ settings.pd-section-desktop }}px;
             --pd-image: {{ settings.pd-image }}px;
+            --color-rgba-black: rgba(18, 18, 18, .04);
+            --color-rgba-white: rgba(255, 255, 255, .04);
         }
 
+
         .product-card {
-            border: solid {{ settings.thickness }}px var(--background-1);
+            border: solid {{ settings.thickness }}px var(--color-bg);
             border-radius: {{ settings.corner-radius }}px;
             overflow: hidden;
         }
@@ -55,6 +57,7 @@
             --color-txt: var(--color-text-dark);
             --color-bd: var(--color-text-dark);
             --color-svg: sepia(1);
+            --color-bg-opacity: var(--color-rgba-black);
         }
 
         .accent-1 {
@@ -62,6 +65,7 @@
             --color-txt: var(--color-text-light);
             --color-bd: var(--color-text-light);
             --color-svg: invert(1);
+            --color-bg-opacity: var(--color-rgba-white); 
         }
 
         .accent-2 {
@@ -69,6 +73,7 @@
             --color-txt: var(--color-text-light);
             --color-bd: var(--color-text-light);
             --color-svg: invert(1);
+            --color-bg-opacity: var(--color-rgba-white);
         }
 
         .background-1 {
@@ -76,6 +81,7 @@
             --color-txt: var(--color-text-dark);
             --color-bd: var(--color-text-dark);
             --color-svg: sepia(1);
+            --color-bg-opacity: var(--color-rgba-black);
         }
 
         .background-2 {
@@ -83,6 +89,7 @@
             --color-txt: var(--color-text-dark);
             --color-bd: var(--color-text-dark);
             --color-svg: sepia(1);
+            --color-bg-opacity: var(--color-rgba-black);
         }
 
         .product-standard {
@@ -95,6 +102,6 @@
         <main>
             {{ content_for_layout }}
         </main>
-        {% section "footer" %}
+        {% sections "footer-group" %}
     </body>
 </html>

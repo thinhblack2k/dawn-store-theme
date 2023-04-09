@@ -1,5 +1,10 @@
 <a href="{{ product.url }}">
-  <div class="product__card h-100 d-flex flex-column {{ settings.style-card }}">
+  <div class="product__card h-100 d-flex flex-column
+  {{ settings.style-card }}
+  {% if settings.style-card == 'product-card' -%}
+    {{ settings.background-color-card }}
+  {%- endif %}
+  ">
     <div class="product__image p-relative {{ section.settings.image-ratio }}">
       <img
         class="w-100 h-100 d-block object-fit-cover"
@@ -20,7 +25,7 @@
       </div>
       <div class="flex-1"></div>
       {% if section.settings['add-button'] %}
-        <button class="product__btn btn w-100" type="submit">Add to card</button>
+        <button class="product__btn btn" type="submit">Add to card</button>
       {% endif %}
     </div>
   </div>

@@ -1,0 +1,144 @@
+<div class="email-signup__container pd-section {{ section.settings.background-color }} ">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center d-flex flex-column">
+        {% for item in section.blocks %}
+          {% case item.type %}
+            {% when 'heading' %}
+              <h2 class="email-signup__heading h2">Subscribe to our emails</h2>
+            {% when 'description' %}
+              <span class="email-signup__discription h4">
+                Be the first to know about new collections and exclusive offers.
+              </span>
+            {% when 'form-email-signup' %}
+              <div class="email-signup__form d-flex justify-center">
+                <form action="#" class="p-relative w-100">
+                  <input class="email-signup__input btn h4 w-100" type="email" placeholder="email">
+                  <button type="submit" class="icon__input p-absolute">
+                    <img class="svg__icon" src="{{ 'icon-nextlink.svg' | asset_url }}" alt="">
+                  </button>
+                </form>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .email-signup .container {
+    padding-top: {{ section.settings.pd-top }}px;
+    padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Email signup",
+  "tag": "section",
+  "class": "email-signup",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Heading",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Subscribe to our emails"
+        }
+      ]
+    },
+    {
+      "name": "Subheading",
+      "type": "description",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "Be the first to know about new collections and exclusive offers."
+        }
+      ]
+    },
+    {
+      "name": "Form",
+      "type": "form-email-signup",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email signup",
+      "settings": {},
+      "blocks": [
+        {
+            "type": "heading"
+        },
+        {
+            "type": "description"
+        },
+        {
+            "type": "form-email-signup"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

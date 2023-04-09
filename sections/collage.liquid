@@ -1,0 +1,169 @@
+<!-- start collage -->
+<section class="collage pd-bt-40">
+  <div class="container">
+    <h2 class="collage__heading heading-3">Back in stock</h2>
+    <div class="collage__items d-grid">
+      {% for item in section.blocks %}
+        {% case item.type %}
+          {% when 'image' %}
+            <div class="collage__image">
+              <img class="w-100 h-100" src="{{ item.settings.image-item | img_url: '2000x' }}" alt="image">
+            </div>
+          {% when 'collection' %}
+            <div class="collage__item d-flex flex-column h-100">
+              <img
+                class="w-100 d-block object-fit-cover flex-1 "
+                src="{{ item.featured_image  | img_url: width: 1500 }}"
+                alt="image banner"
+              >
+              <div class="collage__container">
+                <div class="collage__content d-flex">
+                  <a class="align-center" href="#"> {{ item.settings.collection.title }} </a>
+                  <img src="./assets/images/icon/icon-nextlink.svg" alt="next-link" style="margin-left: 8px;">
+                </div>
+              </div>
+            </div>
+          {% when 'product' %}
+            <div class="collage__item d-flex flex-column h-100">
+              <img
+                class="w-100 d-block object-fit-cover flex-1"
+                src="{{ item.settings.collection-item.product_featured | img_url: "x1000" }}"
+                alt="image banner"
+              >
+              <div class="collage__container">
+                <div class="collage__content d-flex flex-column">
+                  <h3 class="heading-5">Mini Eddy</h3>
+                  <span class="heading-4">$375.00 CAD</span>
+                </div>
+              </div>
+            </div>
+          {% when 'video' %}
+            <div class="collage__item collage__item--large d-flex flex-column h-100">
+              <img
+                class="w-100 d-block object-fit-cover flex-1"
+                src="./assets/images/banner/banner1.jpg"
+                alt="image banner"
+              >
+              <div class="collage__container">
+                <div class="collage__content d-flex">
+                  <a class="align-center" href="#"> Bags </a>
+                  <img src="./assets/images/icon/icon-nextlink.svg" alt="next-link" style="margin-left: 8px;">
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- end collage -->
+{% schema %}
+{
+  "name": "Collage",
+  "tag": "section",
+  "class": "collage",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading-collage",
+      "label": "Heading",
+      "default": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "heading-size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "large"
+        },
+        {
+          "value": "h8",
+          "label": "medium"
+        },
+        {
+          "value": "h3",
+          "label": "small"
+        }
+      ],
+      "default": "h8",
+      "label": "Heading size"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image-item",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "colletion-item",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product-item",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "name": "video",
+      "type": "video-item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image-video",
+          "label": "Image"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video url"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Describe the video",
+          "label": "t:sections.collage.blocks.video.settings.description.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collage",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

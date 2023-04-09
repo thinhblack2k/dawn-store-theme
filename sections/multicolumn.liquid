@@ -1,0 +1,319 @@
+<div class="pd-section mutilcolumn__container {{ section.settings.background-color }}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="multicolumn__title pd-bottom {{ section.settings.title-size }}">
+          {{ section.settings['text-title'] }}
+        </h2>
+      </div>
+    </div>
+    <div class="row column__items">
+      {% for column in section.blocks %}
+        <div class="col" style="--w: {{ section.settings.column-number-mobile }}; --w-md: calc(12 / {{ section.settings.number-column }});">
+          <div class="column__item h-100 {{ section.settings.secondary-background }} {{ section.settings.content_align }}">
+            <div class="column__image d-flex {{ section.settings.content_align }}">
+              {% if column.settings.image != blank %}
+                <img
+                  class="{{ section.settings.image-width }} {{ section.settings.image-ratio }} w-100 d-block object-fit-cover"
+                  src="{{ column.settings.image | img_url: 'x500' }}"
+                  alt="image column"
+                >
+              {% endif %}
+            </div>
+            {% if column.settings['heading-text'] != blank %}
+              <h3 class="column__heading h8">{{ column.settings['heading-text'] }}</h3>
+            {% endif %}
+
+            {% if column.settings['content-text'] != blank %}
+              <p class="column__context h4">
+                {{ column.settings['content-text'] }}
+              </p>
+            {% endif %}
+            {% if column.settings['block-btn-label'] != blank %}
+              <a
+                class="column__link d-flex {{ section.settings.content_align }}"
+                href="{{ column.settings.multil-link }}"
+              >
+                {{ column.settings['block-btn-label'] }}
+                <img class="svg__icon" src="{{ "icon-nextlink.svg" | asset_url }}" alt="next" style="margin-left: 8px">
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% if section.settings['label-link'] != blank %}
+      <div class="row pd-top">
+        <div class="col text-center ">
+          <a class="btn btn__outline" href="{{ section.settings.link }}">{{ section.settings['label-link'] }}</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .multicolumn .container {
+    padding-top: {{ section.settings.pd-top }}px;
+    padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Mutilcolumn",
+  "tag": "section",
+  "class": "multicolumn",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text-title",
+      "label": "Title",
+      "default": "Multicolumn"
+    },
+    {
+      "type": "select",
+      "id": "title-size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "large"
+        },
+        {
+          "value": "h8",
+          "label": "medium"
+        },
+        {
+          "value": "h3",
+          "label": "small"
+        }
+      ],
+      "default": "h8",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "image-width",
+      "options": [
+        {
+          "value": "w-33",
+          "label": "One third width of column"
+        },
+        {
+          "value": "w-50",
+          "label": "Half width of column"
+        },
+        {
+          "value": "w-100",
+          "label": "Full width of column"
+        }
+      ],
+      "default": "w-100",
+      "label": "Image width"
+    },
+    {
+      "type": "select",
+      "id": "image-ratio",
+      "options": [
+        {
+          "value": "adapt-image",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait-image",
+          "label": "Portrait"
+        },
+        {
+          "value": "small-image",
+          "label": "Square"
+        },
+        {
+          "value": "circle-image",
+          "label": "Circle"
+        }
+      ],
+      "default": "adapt-image",
+      "label": "Image ratio"
+    },
+    {
+      "type": "range",
+      "id": "number-column",
+      "label": "Number column",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Column alignment",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ],
+      "default": "text-left"
+    },
+    {
+      "type": "select",
+      "id": "secondary-background",
+      "label": "Secondary background",
+      "options": [
+        {
+          "value": "background-none",
+          "label": "none"
+        },
+        {
+          "value": "background-primary",
+          "label": "Show as column background"
+        }
+      ],
+      "default": "background-none"
+    },
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    },
+    {
+      "type": "text",
+      "id": "label-link",
+      "label": "Label link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "column-number-mobile",
+      "label": "Number of columns on mobile",
+      "options": [
+        {
+          "value": "12",
+          "label": "1 column"
+        },
+        {
+          "value": "6",
+          "label": "2 column"
+        }
+      ],
+      "default": "12"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Column",
+      "type": "column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading-text",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "content-text",
+          "label": "Content",
+          "default": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review"
+        },
+        {
+          "type": "text",
+          "id": "block-btn-label",
+          "label": "Label link"
+        },
+        {
+          "type": "url",
+          "id": "block-btn-link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multicolumn",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="header__logo d-flex justify-center align-center">
-        <a href="#" class="d-inline-block">
+        <a href="{{ shop.url }}" class="d-inline-block">
           {% if section.settings['image-logo'] != blank %}
             <img class="d-block w-100 svg__icon" src="{{ section.settings.image-logo | img_url: 'medium' }}" alt="Logo">
           {% else %}

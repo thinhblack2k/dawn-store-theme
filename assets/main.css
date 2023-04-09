@@ -131,11 +131,20 @@ h6,
 
 /* === image ratio === */
 .adapt-image {
+    aspect-ratio: auto;
+}
 
+.portrait-image {
+    aspect-ratio: 3/4;
 }
 
 .small-image {
     aspect-ratio: 4/3;
+}
+
+.circle-image {
+    aspect-ratio: 1;
+    border-radius: 50%;
 }
 
 .medium-image {
@@ -519,6 +528,10 @@ h6,
     -ms-transition-duration: 0.5s;
 }
 
+.product__card {
+    background-color: var(--color-bg);
+}
+
 .product__card:hover .product__image img {
     transform: scale(1.1);
     transition: all .5s ease;
@@ -569,9 +582,19 @@ h6,
 }
 
 .product__btn {
+    margin: 0 13px 10px 13px;
     background-color: transparent;
     color: var(--color-txt);
     border-color: var(--color-txt);
+}
+
+.product__btn:hover {
+    cursor: pointer;
+}
+
+.product-standard .product__btn {
+    margin: 0 !important;
+    margin-bottom: 10px !important;
 }
 
 /* style image */
@@ -619,4 +642,127 @@ h6,
     border-color:var(--color-txt);
 }
 
+/* collage */
+.collage__heading {
+    margin: 0;
+    margin-bottom: 24px;
+}
 
+.collage__items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.collage__item--large {
+    grid-column: span 2;
+}
+
+.collage__content {
+    width: 100%;
+    padding: 14px 24px;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: var(--color-bg);
+}
+
+.collage__content h3 {
+    margin: 0;
+}
+
+.collage__content a {
+    text-decoration: none;
+    color: var(--black-text);
+}
+
+.collage__item--new {
+    gap: 10px;
+}
+
+
+/* === Multicolumn === */
+.mutilcolumn__container {
+    background-color: var(--color-bg);
+}
+
+.multicolumn__title {
+    margin: 0;
+    color: var(--color-txt);
+}
+
+.column__items {
+    row-gap: var(--vertical-space);
+}
+
+.column__item {
+    padding: 16px;
+}
+
+.background-primary {
+    background: var(--color-bg) linear-gradient( var(--color-bg-opacity), var(--color-bg-opacity));
+}
+
+.column__image {margin-bottom: 16px;}
+
+.column__image img{
+    transition: opacity .4s cubic-bezier(.25,.46,.45,.94);
+}
+
+.column__heading {
+    margin: 0;
+    margin-bottom: 16px;
+    color: var(--color-txt)
+}
+
+.column__context {
+    opacity: 0.75;
+    margin: 0;
+    margin-top: var(--vertical-space);
+    color: var(--color-txt)
+}
+
+.column__link {
+    text-decoration: none;
+    color: var(--color-txt);
+    margin-top: 16px;
+}
+
+/* === email signup === */
+.email-signup__container {
+    background-color: var(--color-bg);
+}
+
+.email-signup__heading {
+    margin: 0;
+    color: var(--color-txt);
+}
+
+.email-signup__discription {
+    margin: 0;
+    opacity: .75;
+    color: var(--color-txt);
+    margin-top: 20px;
+}
+
+.email-signup__form {
+    margin-top: 20px;
+}
+
+.email-signup__form form {
+    margin: 0;
+    max-width: 360px;
+}
+
+.email-signup__input {
+    background-color: transparent;
+    height: 47px;
+    color: var(--color-txt);
+}
+
+.icon__input {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
