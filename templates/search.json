@@ -1,13 +1,13 @@
 {
     "sections": {
-        "main-product": {
-            "type": "main-product",
+        "banner": {
+            "type": "banner",
             "settings": {
 
             }
         }
     },
     "order": [
-        "main-product"
+        "banner"
     ]
 }

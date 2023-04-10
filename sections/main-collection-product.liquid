@@ -1,0 +1,176 @@
+<div class="product-list {{ section.settings.background-color }}">
+  <div class="container pd-section">
+    <div class="row">
+      {%- for product in collection.products limit: section.settings['product-limit'] -%}
+        <div class="col" style="--w:6; --w-lg: calc(12 / {{ section.settings.product-row }});">
+          {% render 'product-card', product: product %}
+        </div>
+      {%- endfor -%}
+    </div>
+    {% if section.settings['show-btn'] == true %}
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <a class="btn btn__view--all {{ section.settings.style-viewall }}" href="collection.html">View all</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+<style>
+  .feature-collection {
+    padding-top: {{ section.settings.pd-top }}px;
+    padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+
+  .product-standard .product__image {
+    border: solid {{ settings.thickness }}px var(--background-1);
+    border-radius: {{ settings.corner-radius }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "tag": "section",
+  "class": "feature-collection",
+  "settings": [
+    {
+        "type": "header",
+        "content": "Product grid"
+    },
+    {
+      "type": "range",
+      "id": "product-limit",
+      "label": "Maximum products to show",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product-row",
+      "label": "Number of columns on desktop",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show-btn",
+      "label": "Enable View all if collection has more products than shown",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "style-viewall",
+      "label": "View all style",
+      "options": [
+        {
+          "value": "btn__link",
+          "label": "Link"
+        },
+        {
+          "value": "btn__outline",
+          "label": "Outline"
+        },
+        {
+          "value": "btn__solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "btn__solid"
+    },
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "select",
+      "id": "image-ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "adapt-image",
+          "label": "Adapt image"
+        },
+        {
+          "value": "portrait-image",
+          "label": "Portrait"
+        },
+        {
+          "value": "square-image",
+          "label": "Square"
+        }
+      ],
+      "default": "adapt-image"
+    },
+    {
+      "type": "checkbox",
+      "id": "add-button",
+      "label": "Enable quick add button"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

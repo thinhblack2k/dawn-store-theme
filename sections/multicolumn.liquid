@@ -1,15 +1,20 @@
 <div class="pd-section mutilcolumn__container {{ section.settings.background-color }}">
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <h2 class="multicolumn__title pd-bottom {{ section.settings.title-size }}">
-          {{ section.settings['text-title'] }}
-        </h2>
+    {% if section.settings['text-title'] != blank %}
+      <div class="row">
+        <div class="col">
+          <h2 class="multicolumn__title pd-bottom {{ section.settings.title-size }}">
+            {{ section.settings['text-title'] }}
+          </h2>
+        </div>
       </div>
-    </div>
+    {% endif %}
     <div class="row column__items">
       {% for column in section.blocks %}
-        <div class="col" style="--w: {{ section.settings.column-number-mobile }}; --w-md: calc(12 / {{ section.settings.number-column }});">
+        <div
+          class="col"
+          style="--w: {{ section.settings.column-number-mobile }}; --w-md: calc(12 / {{ section.settings.number-column }});"
+        >
           <div class="column__item h-100 {{ section.settings.secondary-background }} {{ section.settings.content_align }}">
             <div class="column__image d-flex {{ section.settings.content_align }}">
               {% if column.settings.image != blank %}
@@ -68,8 +73,7 @@
     {
       "type": "text",
       "id": "text-title",
-      "label": "Title",
-      "default": "Multicolumn"
+      "label": "Title"
     },
     {
       "type": "select",
@@ -162,7 +166,7 @@
           "label": "Right"
         }
       ],
-      "default": "text-left"
+      "default": "text-center"
     },
     {
       "type": "select",
@@ -277,7 +281,7 @@
           "type": "text",
           "id": "heading-text",
           "label": "Heading",
-          "default": "Heading"
+          "default": "Column"
         },
         {
           "type": "inline_richtext",

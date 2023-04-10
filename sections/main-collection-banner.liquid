@@ -1,0 +1,66 @@
+<div class="banner-collection__container p-relative {{ section.settings.background-color }}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="banner-collection__wrap">
+          {% if collection.title != blank %}
+            <h1 class="banner-collection__title h2">{{ collection.title }}</h1>
+          {% endif %}
+          {% if collection.description != blank and section.settings.show-description == true %}
+            <span class="banner-collection__description">{{ collection.description }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner collection",
+  "tag": "section",
+  "class": "banner-collection",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show-description",
+      "label": "Show description",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show-collection-img",
+      "label": "Show collection image",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    }
+  ]
+}
+{% endschema %}
