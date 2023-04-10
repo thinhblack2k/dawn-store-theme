@@ -12,12 +12,14 @@
               </span>
             {% when 'form-email-signup' %}
               <div class="email-signup__form d-flex justify-center">
-                <form action="#" class="p-relative w-100">
-                  <input class="email-signup__input btn h4 w-100" type="email" placeholder="email">
-                  <button type="submit" class="icon__input p-absolute">
-                    <img class="svg__icon" src="{{ 'icon-nextlink.svg' | asset_url }}" alt="">
-                  </button>
-                </form>
+                <div class="w-100 form__container p-relative">
+                  {% form 'customer' %}
+                    <input class="email-signup__input btn h4 w-100" type="email" placeholder="email" name="contact[email]">
+                    <button type="submit" class="icon__input p-absolute">
+                      <img class="svg__icon" src="{{ 'icon-nextlink.svg' | asset_url }}" alt="">
+                    </button>
+                  {% endform %}
+                </div>
               </div>
           {% endcase %}
         {% endfor %}
@@ -129,13 +131,13 @@
       "settings": {},
       "blocks": [
         {
-            "type": "heading"
+          "type": "heading"
         },
         {
-            "type": "description"
+          "type": "description"
         },
         {
-            "type": "form-email-signup"
+          "type": "form-email-signup"
         }
       ]
     }

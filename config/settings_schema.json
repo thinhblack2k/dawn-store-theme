@@ -53,7 +53,7 @@
                 "type": "color",
                 "id": "color-accent-1",
                 "label": "Accent 1",
-                "default": "#000000",
+                "default": "#121212",
                 "info": "Used for solid button."
             },
             {

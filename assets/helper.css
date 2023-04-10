@@ -66,6 +66,10 @@
     flex-direction: row;
 }
 
+.row-revert {
+    flex-direction: row-reverse;
+}
+
 .flex-1 {
     flex: 1;
 }

@@ -1,0 +1,318 @@
+<div class="footer__contaier {{ section.settings.background-color }} ">
+  <div class="footer__top pd-top">
+    <div class="container">
+      <div class="footer__blocks">
+        <div class="row">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'information' %}
+                <div class="col" style="--w-md: 4;">
+                  <div class="footer__logo">
+                    <img class="w-100 d-block svg__icon" src="{{ block.settings.logo-brand | img_url: 'medium' }}" alt="">
+                  </div>
+                  {% if block.settings['show-social'] == true %}
+                    <ul class="social__items d-flex align-center">
+                      <li class="social__item">
+                        <a class="d-inline-block" href="#">
+                          <img class="svg__icon d-block" src="{{ "twitter.svg" | asset_url }}" alt="">
+                        </a>
+                      </li>
+                      <li class="social__item">
+                        <a class="d-inline-block" href="#">
+                          <img class="svg__icon d-block" src="{{ "facebook.svg" | asset_url }}" alt="">
+                        </a>
+                      </li>
+                      <li class="social__item">
+                        <a class="d-inline-block" href="#">
+                          <img class="svg__icon d-block" src="{{ "instagram.svg" | asset_url }}" alt="">
+                        </a>
+                      </li>
+                      <li class="social__item">
+                        <a class="d-inline-block" href="#">
+                          <img class="svg__icon d-block" src="{{ "tiktok.svg" | asset_url }}" alt="">
+                        </a>
+                      </li>
+                      <li class="social__item">
+                        <a class="d-inline-block" href="#">
+                          <img class="svg__icon d-block" src="{{ "youtube.svg" | asset_url }}" alt="">
+                        </a>
+                      </li>
+                    </ul>
+                  {% endif %}
+                </div>
+              {% when 'menu' %}
+                <div class="col" style="--w-md: 4;">
+                  <div class="footer__block">
+                    <h3 class="block__heading">{{ block.settings['heading-menu'] }}</h3>
+                    <ul class="list__items">
+                      {% for link in block.settings['menu-footer'].links %}
+                        <li class="list__item">
+                          <a class="footer__anchor h5" href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              {% when 'text' %}
+                <div class="col" style="--w-md: 4;">
+                  <div class="footer__block">
+                    <h3 class="block__heading">{{ block.settings['heading-text'] }}</h3>
+                    <ul class="list__items">
+                      <li class="list__item">
+                        <span class="h5">{{ block.settings['content-text'] }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              {% when 'image' %}
+                <div class="footer__image">
+                  <img src="{{ block.image-footer | img_url: 'x1000' }}" alt="image footer">
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+        <div class="row align-center pd-section {% if section.settings['show-email-signup'] == false or section.settings.show-social-icon == false %} justify-center {%endif%}">
+          {% if section.settings['show-email-signup'] == true %}
+            <div class="col" style="--w-md: 8;">
+              <div class="footer__subscribe">
+                <h3 class="block__heading">{{ section.settings.heading-signup }}</h3>
+                <div class="email-signup__form d-flex">
+                  <div class="w-100 form__container p-relative">
+                    {% form 'customer' %}
+                      <input
+                        class="email-signup__input btn h4 w-100"
+                        type="email"
+                        placeholder="email"
+                        name="contact[email]"
+                      >
+                      <button type="submit" class="icon__input p-absolute">
+                        <img class="svg__icon" src="{{ 'icon-nextlink.svg' | asset_url }}" alt="">
+                      </button>
+                    {% endform %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.show-social-icon == true %}
+            <div class="col" style="--w-md: 4;">
+              <ul class="social__items d-flex align-center">
+                <li class="social__item">
+                  <a class="d-inline-block" href="#">
+                    <img class="svg__icon d-block" src="{{ "twitter.svg" | asset_url }}" alt="">
+                  </a>
+                </li>
+                <li class="social__item">
+                  <a class="d-inline-block" href="#">
+                    <img class="svg__icon d-block" src="{{ "facebook.svg" | asset_url }}" alt="">
+                  </a>
+                </li>
+                <li class="social__item">
+                  <a class="d-inline-block" href="#">
+                    <img class="svg__icon d-block" src="{{ "instagram.svg" | asset_url }}" alt="">
+                  </a>
+                </li>
+                <li class="social__item">
+                  <a class="d-inline-block" href="#">
+                    <img class="svg__icon d-block" src="{{ "tiktok.svg" | asset_url }}" alt="">
+                  </a>
+                </li>
+                <li class="social__item">
+                  <a class="d-inline-block" href="#">
+                    <img class="svg__icon d-block" src="{{ "youtube.svg" | asset_url }}" alt="">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom pd-top">
+    <div class="container">
+      <div class="row pd-40 p-relative">
+        <div class="col footer__select-box d-flex justify-center" style="--w-lg:4;"></div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <p class="footer__copy-right">© 2021, dawn-theme-default Powered by Shopify</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .footer {
+    margin-top: {{ section.settings.top-margin }}px;
+  }
+
+  .footer__contaier {
+     padding-top: {{ section.settings.pd-top }}px;
+     padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "footer",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    },
+    {
+      "type": "header",
+      "content": "EMAIL SIGNUP",
+      "info": "Subscribers added automatically to your “accepted marketing” customer list."
+    },
+    {
+      "type": "checkbox",
+      "id": "show-email-signup",
+      "label": "Show email sign up",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading-signup",
+      "label": "Heading",
+      "default": "Subscribe to our emails"
+    },
+    {
+      "type": "header",
+      "content": "SOCIAL MEDIA ICONS"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-social-icon",
+      "label": "Show social media icon",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "top-margin",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "unit": "px",
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Brand information",
+      "type": "information",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo-brand",
+          "label": "Logo"
+        },
+        {
+          "type": "checkbox",
+          "id": "show-social",
+          "label": "Show social",
+          "info": "To display your social media accounts, link them in your"
+        }
+      ]
+    },
+    {
+      "name": "Menu",
+      "type": "menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading-menu",
+          "label": "Heading",
+          "default": "Quick link"
+        },
+        {
+          "type": "link_list",
+          "id": "menu-footer",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading-text",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content-text",
+          "label": "Subtext"
+        }
+      ]
+    },
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image-footer",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

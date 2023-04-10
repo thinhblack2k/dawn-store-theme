@@ -204,7 +204,23 @@
         grid-row: span 2;
     }
 
-    
+    /* === product detail === */
+    .image__items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .image__item:first-child {
+        grid-column: span 2;
+    }
+
+    .image__item:last-child {
+        grid-column: span 2;
+    }
+
+    .product-detail__info {
+        padding-left: 40px;
+    }
 }
 
 @media (min-width: 992px) {
