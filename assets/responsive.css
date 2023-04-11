@@ -221,6 +221,27 @@
     .product-detail__info {
         padding-left: 40px;
     }
+
+    /* === footer === */
+    .footer .social__items {
+        margin-top: 0;
+        justify-content: flex-start;
+    }
+
+    /* === blog === */
+    .blog__items {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--vertical-space);
+    }
+
+    .layout-collage {
+        grid-column: span 2;
+    }
+    
+    .layout-collage .blog__content {
+        text-align: center;
+        max-width: 700px;
+    }
 }
 
 @media (min-width: 992px) {

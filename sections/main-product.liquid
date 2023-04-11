@@ -13,104 +13,89 @@
           </div>
         </div>
         <div class="product-detail__slide-control d-flex justify-center">
-            <div class="slide-control__slide p-relative">
-              <button class="slide-control__slide--prev cursor-pointer p-absolute">
-                <img src="{{ 'chevron-left.svg' | asset_url }}" alt="sub">
-              </button>
-              <input type="text" value="1/10" class="slide-control__slide--value heading-6 w-100 h-100">
-              <button class="slide-control__slide--next cursor-pointer p-absolute">
-                <img src="{{ 'chevron-right.svg' | asset_url }}" alt="sum">
-              </button>
-            </div>
+          <div class="slide-control__slide p-relative">
+            <button class="slide-control__slide--prev cursor-pointer p-absolute">
+              <img src="{{ 'chevron-left.svg' | asset_url }}" alt="sub">
+            </button>
+            <input type="text" value="1/10" class="slide-control__slide--value heading-6 w-100 h-100">
+            <button class="slide-control__slide--next cursor-pointer p-absolute">
+              <img src="{{ 'chevron-right.svg' | asset_url }}" alt="sum">
+            </button>
+          </div>
         </div>
       </div>
       <div class="col" style="--w-md: calc(12 - {{ section.settings.media-width }});">
         <div class="product-detail__info">
-          <h1 class="product-detail__name">
-            {{ product.title }}
-          </h1>
-          <span class="product-detail__price d-block">{{ product.price | money }}</span>
-          <div class="product-detail__variants">
-            <h3 class="product-detail__variant--title h6">Color</h3>
-            <div class="product-detail__variant--items d-flex">
-              {% for variant in product.variants %}
-                <button class="product-detail__variant--item">{{ variant.title }}</button>
-              {% endfor %}
-            </div>
-          </div>
-          <div class="product-detail__quantity">
-            <h3 class="h6">Quantity</h3>
-            <div class="select__number p-relative">
-              <button class="select__number--minus cursor-pointer p-absolute">
-                <img src="{{ 'minus.svg' | asset_url }}" alt="sub">
-              </button>
-              <input type="text" value="1" class="select__number--value heading-6 w-100 h-100">
-              <button class="select__number--plus cursor-pointer p-absolute">
-                <img src="{{ 'plus.svg' | asset_url }}" alt="sum">
-              </button>
-            </div>
-          </div>
-          <button class="btn product-detail__addtocart w-100">Add to cart</button>
-
-          <button class="btn product-detail__buynow w-100">Buy it now</button>
-
-          <div class="product-detail__description">
-            {{ product.description }}
-          </div>
-
-          <div class="product-detail__describe">
-            <details class="describe__item">
-              <summary class="describe__summary d-flex align-center space-between p-relative">
-                <div class="d-flex align-center">
-                  <img class="describe-icon" src="{{ 'materials.svg' | asset_url }}" alt=""> Materials
+          {% for item in section.blocks %}
+            {% case item.type %}
+              {% when 'title' %}
+                <h1 class="product-detail__name">
+                  {{ product.title }}
+                </h1>
+              {% when 'price' %}
+                <div class="product-detail__price d-block">
+                  {% if product.compare_at_price != blank %}
+                    <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
+                  {% endif %}
+                  <span class="product__price--new h4">{{ product.price | money }}</span>
                 </div>
-                <div class="describe__icon--action d-flex align-center">
-                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
-                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+              {% when 'variant' %}
+                <div class="product-detail__variants">
+                  <h3 class="product-detail__variant--title h6">Color</h3>
+                  <div class="product-detail__variant--items d-flex">
+                    {% for variant in product.variants %}
+                      <button class="product-detail__variant--item">{{ variant.title }}</button>
+                    {% endfor %}
+                  </div>
                 </div>
-              </summary>
-              <p class="describe__context heading-4">
-                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
-                shoulder strap.
-              </p>
-            </details>
-            <details class="describe__item">
-              <summary class="describe__summary d-flex align-center space-between p-relative">
-                <div class="d-flex align-center">
-                  <img class="describe-icon" src="{{ 'ruler.svg' | asset_url }}" alt=""> Dimensions
+              {% when 'quantity' %}
+                <div class="product-detail__quantity">
+                  <h3 class="h6">Quantity</h3>
+                  <div class="select__number p-relative">
+                    <button class="select__number--minus cursor-pointer p-absolute">
+                      <img src="{{ 'minus.svg' | asset_url }}" alt="sub">
+                    </button>
+                    <input type="text" value="1" class="select__number--value heading-6 w-100 h-100">
+                    <button class="select__number--plus cursor-pointer p-absolute">
+                      <img src="{{ 'plus.svg' | asset_url }}" alt="sum">
+                    </button>
+                  </div>
                 </div>
-                <div class="describe__icon--action d-flex align-center">
-                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
-                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+              {% when 'buy-button' %}
+                <button class="btn product-detail__addtocart w-100">Add to cart</button>
+                <button class="btn product-detail__buynow w-100">Buy it now</button>
+              {% when 'description' %}
+                <div class="product-detail__description">
+                  {{ product.description }}
                 </div>
-              </summary>
-              <p class="describe__context heading-4">
-                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
-                shoulder strap.
-              </p>
-            </details>
-            <details class="describe__item">
-              <summary class="describe__summary d-flex align-center space-between p-relative">
-                <div class="d-flex align-center">
-                  <img class="describe-icon" src="{{ 'heart.svg' | asset_url }}" alt=""> Care Instructions
+              {% when 'colapsible' %}
+                <div class="product-detail__describe">
+                  <details class="describe__item">
+                    <summary class="describe__summary d-flex align-center space-between p-relative">
+                      <div class="d-flex align-center">
+                        <img class="describe-icon" src="{{ item.settings.icon-colapsible | asset_url }}" alt=""> {{ item.settings.heading-colapsible }}
+                      </div>
+                      <div class="describe__icon--action d-flex align-center">
+                        <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
+                        <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+                      </div>
+                    </summary>
+                    <p class="describe__context heading-4">
+                      {{ item.settings['row-content'] }}
+                    </p>
+                  </details>
                 </div>
-                <div class="describe__icon--action d-flex align-center">
-                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
-                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+              {% when 'share' %}
+                <div class="describe__item describe__item--share">
+                  <a class="product-detail__anchor" href="#">
+                    <div class="d-flex align-center">
+                      <img class="describe-icon" src="{{ 'share.svg' | asset_url }}" alt="">
+                      Share
+                    </div>
+                  </a>
                 </div>
-              </summary>
-              <p class="describe__context heading-4">
-                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
-                shoulder strap.
-              </p>
-            </details>
-            <div class="describe__item describe__item--share">
-              <div class="d-flex align-center">
-                <img class="describe-icon" src="{{ 'share.svg' | asset_url }}" alt="">
-                Share
-              </div>
-            </div>
-          </div>
+            {% endcase %}
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -164,6 +149,115 @@
         }
       ],
       "default": "none-revert"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Title",
+      "type": "title",
+      "settings": []
+    },
+    {
+      "name": "Price",
+      "type": "price",
+      "settings": []
+    },
+    {
+      "name": "Variant",
+      "type": "variant",
+      "settings": []
+    },
+    {
+      "name": "Quantity",
+      "type": "quantity",
+      "settings": []
+    },
+    {
+      "name": "Buy button",
+      "type": "buy-button",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show-add-to-cart",
+          "label": "Show dynamic checkout buttons",
+          "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay."
+        }
+      ]
+    },
+    {
+      "name": "Description",
+      "type": "description",
+      "settings": []
+    },
+    {
+      "name": "Colapsible row",
+      "type": "colapsible",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading-colapsible",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "icon-colapsible",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "heart.svg",
+              "label": "Heart"
+            },
+            {
+              "value": "materials.svg",
+              "label": "Materials"
+            },
+            {
+              "value": "ruler.svg",
+              "label": "Ruler"
+            }
+          ],
+          "default": "heart.svg"
+        },
+        {
+          "type": "richtext",
+          "id": "row-content",
+          "label": "Row content"
+        }
+      ]
+    },
+    {
+      "name": "Share",
+      "type": "share",
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product infomation",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "variant"
+        },
+        {
+          "type": "quantity"
+        },
+        {
+          "type": "buy-button"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "share"
+        }
+      ]
     }
   ]
 }

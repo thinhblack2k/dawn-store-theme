@@ -1,0 +1,206 @@
+<div class="blog__container">
+  <div class="container">
+    <h1 class="blog__heading h2">{{ blog.title }}</h1>
+    <div class="blog__items d-grid">
+      {% for item in blog.articles %}
+        <div class="blog__item {% if forloop.index != 2 and forloop.index != 3 %} {{ section.settings.layout-blog }} {% endif %} h-100 {{ section.settings.blog-color }}">
+          <a href="{{ item.url }}">
+            {% if section.settings['show-image-blog'] == true %}
+              <div class="blog__img">
+                <img
+                  class="w-100 h-100 d-block object-fit-cover"
+                  src="{{ item.image | img_url: 'x1500' }}"
+                  alt="blog image"
+                >
+              </div>
+            {% endif %}
+            <div class="blog__box d-flex justify-center">
+              <div class="blog__content">
+                <h3 class="h3 blog__name">{{ item.title | truncatewords: 10 }}</h3>
+                {% if section.settings['show-date'] == true %}
+                  <span class="blog__date h6">{{ item.created_at | date: '%a, %b %d, %y' | upcase }}</span>
+                {% endif %}
+                {% if section.settings['show-author'] %}
+                  <span class="blog__date h6"> - {{ item.author }}</span>
+                {% endif %}
+                <span class="blog__context d-block h4">
+                  {{ item.content | truncatewords: 50 }}
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+    .blog {
+      padding-top: {{ section.settings.pd-top }}px;
+      padding-bottom: {{ section.settings.pd-bottom }}px;
+    }
+  .blog__img {
+      aspect-ratio: {{ section.settings.image-height }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "tag": "section",
+  "class": "blog",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog post card"
+    },
+    {
+      "type": "select",
+      "id": "layout-blog",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "layout-grid",
+          "label": "Grid"
+        },
+        {
+          "value": "layout-collage",
+          "label": "Collage"
+        }
+      ],
+      "default": "layout-collage"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-image-blog",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image-height",
+      "label": "Image height",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "4/2",
+          "label": "Small"
+        },
+        {
+          "value": "3/2",
+          "label": "Medium"
+        },
+        {
+          "value": "4/3",
+          "label": "Large"
+        }
+      ],
+      "default": "3/2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show-author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "blog card"
+    },
+    {
+      "type": "select",
+      "id": "style-blog",
+      "label": "Style",
+      "options": [
+        {
+          "value": "blog-standard",
+          "label": "Standard"
+        },
+        {
+          "value": "blog-card",
+          "label": "Card"
+        }
+      ],
+      "default": "blog-standard"
+    },
+    {
+      "type": "select",
+      "id": "blog-style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "blog-standard",
+          "label": "Standard"
+        },
+        {
+          "value": "blog-card",
+          "label": "Card"
+        }
+      ],
+      "default": "blog-standard"
+    },
+    {
+      "type": "select",
+      "id": "blog-color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    }
+  ]
+}
+{% endschema %}

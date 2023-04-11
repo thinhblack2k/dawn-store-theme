@@ -1,12 +1,12 @@
 <div class="footer__contaier {{ section.settings.background-color }} ">
-  <div class="footer__top pd-top">
+  <div class="footer__top">
     <div class="container">
       <div class="footer__blocks">
         <div class="row">
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'information' %}
-                <div class="col" style="--w-md: 4;">
+                <div class="col pd-top" style="--w-md: 4;">
                   <div class="footer__logo">
                     <img class="w-100 d-block svg__icon" src="{{ block.settings.logo-brand | img_url: 'medium' }}" alt="">
                   </div>
@@ -41,7 +41,7 @@
                   {% endif %}
                 </div>
               {% when 'menu' %}
-                <div class="col" style="--w-md: 4;">
+                <div class="col pd-top" style="--w-md: 4;">
                   <div class="footer__block">
                     <h3 class="block__heading">{{ block.settings['heading-menu'] }}</h3>
                     <ul class="list__items">
@@ -54,7 +54,7 @@
                   </div>
                 </div>
               {% when 'text' %}
-                <div class="col" style="--w-md: 4;">
+                <div class="col pd-top" style="--w-md: 4;">
                   <div class="footer__block">
                     <h3 class="block__heading">{{ block.settings['heading-text'] }}</h3>
                     <ul class="list__items">
@@ -98,27 +98,27 @@
             <div class="col" style="--w-md: 4;">
               <ul class="social__items d-flex align-center">
                 <li class="social__item">
-                  <a class="d-inline-block" href="#">
+                  <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "twitter.svg" | asset_url }}" alt="">
                   </a>
                 </li>
                 <li class="social__item">
-                  <a class="d-inline-block" href="#">
+                  <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "facebook.svg" | asset_url }}" alt="">
                   </a>
                 </li>
                 <li class="social__item">
-                  <a class="d-inline-block" href="#">
+                  <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "instagram.svg" | asset_url }}" alt="">
                   </a>
                 </li>
                 <li class="social__item">
-                  <a class="d-inline-block" href="#">
+                  <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "tiktok.svg" | asset_url }}" alt="">
                   </a>
                 </li>
                 <li class="social__item">
-                  <a class="d-inline-block" href="#">
+                  <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "youtube.svg" | asset_url }}" alt="">
                   </a>
                 </li>
@@ -141,6 +141,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <style>
