@@ -4,13 +4,24 @@
       <div class="col p-relative" style="--w-md: {{ section.settings.media-width }};">
         <img class="p-absolute icon-zoom" src="{{ 'icon-zoom.svg' | asset_url }}" alt="">
         <div class="product-detail__media">
-          <div class="image__items d-flex">
+          <div class="media__items d-flex">
             {% for image in product.media %}
-              <div class="image__item w-100">
+              <div class="media__item w-100">
                 <img class="w-100" src="{{ image.preview_image | img_url: 'x2000' }}" alt="image product">
               </div>
             {% endfor %}
           </div>
+        </div>
+        <div class="product-detail__slide-control d-flex justify-center">
+            <div class="slide-control__slide p-relative">
+              <button class="slide-control__slide--prev cursor-pointer p-absolute">
+                <img src="{{ 'chevron-left.svg' | asset_url }}" alt="sub">
+              </button>
+              <input type="text" value="1/10" class="slide-control__slide--value heading-6 w-100 h-100">
+              <button class="slide-control__slide--next cursor-pointer p-absolute">
+                <img src="{{ 'chevron-right.svg' | asset_url }}" alt="sum">
+              </button>
+            </div>
         </div>
       </div>
       <div class="col" style="--w-md: calc(12 - {{ section.settings.media-width }});">
@@ -39,16 +50,66 @@
               </button>
             </div>
           </div>
-          <button class="btn product-detail__addtocart w-100">
-              Add to cart
-          </button>
+          <button class="btn product-detail__addtocart w-100">Add to cart</button>
 
-          <button class="btn product-detail__buynow w-100">
-              Buy it now
-          </button>
+          <button class="btn product-detail__buynow w-100">Buy it now</button>
 
           <div class="product-detail__description">
             {{ product.description }}
+          </div>
+
+          <div class="product-detail__describe">
+            <details class="describe__item">
+              <summary class="describe__summary d-flex align-center space-between p-relative">
+                <div class="d-flex align-center">
+                  <img class="describe-icon" src="{{ 'materials.svg' | asset_url }}" alt=""> Materials
+                </div>
+                <div class="describe__icon--action d-flex align-center">
+                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
+                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+                </div>
+              </summary>
+              <p class="describe__context heading-4">
+                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
+                shoulder strap.
+              </p>
+            </details>
+            <details class="describe__item">
+              <summary class="describe__summary d-flex align-center space-between p-relative">
+                <div class="d-flex align-center">
+                  <img class="describe-icon" src="{{ 'ruler.svg' | asset_url }}" alt=""> Dimensions
+                </div>
+                <div class="describe__icon--action d-flex align-center">
+                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
+                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+                </div>
+              </summary>
+              <p class="describe__context heading-4">
+                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
+                shoulder strap.
+              </p>
+            </details>
+            <details class="describe__item">
+              <summary class="describe__summary d-flex align-center space-between p-relative">
+                <div class="d-flex align-center">
+                  <img class="describe-icon" src="{{ 'heart.svg' | asset_url }}" alt=""> Care Instructions
+                </div>
+                <div class="describe__icon--action d-flex align-center">
+                  <img class="icon-open d-block" src="{{ 'icon-chevron-down.svg' | asset_url }}" alt="">
+                  <img class="icon-close d-none" src="{{ 'chevron-up.svg' | asset_url }}" alt="">
+                </div>
+              </summary>
+              <p class="describe__context heading-4">
+                Hand-crafted from Italian cow leather. Ultrasuede interior. Comes with a detachable and adjustable
+                shoulder strap.
+              </p>
+            </details>
+            <div class="describe__item describe__item--share">
+              <div class="d-flex align-center">
+                <img class="describe-icon" src="{{ 'share.svg' | asset_url }}" alt="">
+                Share
+              </div>
+            </div>
           </div>
         </div>
       </div>
