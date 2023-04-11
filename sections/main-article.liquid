@@ -1,0 +1,144 @@
+<div class="article__image">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'image' %}
+        <div class="article__img--item {{ block.settings.image-height }}">
+          <img
+            class="w-100 h-100 d-block object-fit-cover"
+            src="{{ article.image | img_url: 'x2000' }}"
+            alt="image article"
+          >
+        </div>
+      {% when 'image' %}
+
+    {% endcase %}
+  {% endfor %}
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="article__content d-flex justify-center">
+        <div class="article__container pd-section">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'title' %}
+                <h1 class="article__heading h2">{{ article.title }}</h1>
+                <span class="article__date d-block">{{ article.created_at | date: '%a, %b %d, %y' | upcase }}</span>
+              {% when 'share' %}
+                <div class="article__share d-flex align-center">
+                  <img src="{{ 'share.svg' | asset_url }}" alt="share" style="margin-right: 8px;">
+                  <span class="h5">Share</span>
+                </div>
+              {% when 'content' %}
+                <div class="article__context h4">
+                  {{ article.content }}
+                </div>
+            {% endcase %}
+          {% endfor %}
+          <div class="article__footer text-center d-flex align-center justify-center">
+            <img src="{{ 'arrow-left.svg' | asset_url }}" alt="back" style="margin-right: 8px;">
+            <a class="h5" href="{{ blog.url }}">Back to blog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Blog post",
+  "tag": "section",
+  "class": "article",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image-height",
+          "label": "Image height",
+          "options": [
+            {
+              "value": "auto",
+              "label": "Adapt to image"
+            },
+            {
+              "value": "image-small",
+              "label": "Small"
+            },
+            {
+              "value": "image-medium",
+              "label": "Medium"
+            },
+            {
+              "value": "image-large",
+              "label": "Large"
+            }
+          ],
+          "default": "image-small"
+        }
+      ]
+    },
+    {
+        "name": "Title",
+        "type": "title",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show-date",
+                "label": "Show date",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "show-author",
+                "label": "Show author",
+                "default": false
+            }
+        ]
+    },
+    {
+        "name": "Share",
+        "type": "share",
+        "settings": [
+            {
+                "type": "text",
+                "id": "text-share",
+                "label": "Text",
+                "default": "Share"
+            }
+        ]
+    },
+    {
+        "name": "Content",
+        "type": "content",
+        "settings": [
+        ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "Blog post",
+        "settings": {},
+        "blocks": [
+            {
+                "type": "image"
+            },
+            {
+                "type": "title"
+            },
+            {
+                "type": "share"
+            },
+            {
+                "type": "content"
+            }
+        ]
+    }
+  ]
+}
+{% endschema %}
