@@ -1017,8 +1017,8 @@ h6,
     margin-bottom: 16px;
 }
 
-.product-detail__variants {
-
+.product-detail__variant {
+    margin-bottom: 16px;
 }
 
 .product-detail__variant--title {
@@ -1040,6 +1040,19 @@ h6,
     border: solid 1px var(--color-txt);
     color: var(--color-txt);
     background-color: var(--color-bg);
+}
+
+.custom-radio {
+    display: none;
+}
+
+.custom-label {
+
+}
+
+.quantity__heading {
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 .product-detail__addtocart {
@@ -1172,8 +1185,9 @@ h6,
     margin: 0 auto;
 }
 
-.article__container {
+.article__box {
     max-width: 700px;
+    margin: 0 auto;
 }
 
 .article__heading {
@@ -1206,10 +1220,70 @@ h6,
 }
 
 .article__footer a {
-    color: var(--black-text);
+    color: var(--color-txt);
     text-decoration: none;
     padding: 8px 0;
 }
+
+.comment {
+    background-color: var(--background-2);
+}
+
+.blog__comment {
+
+}
+
+.comment__container {
+    margin-bottom: 50px;
+}
+
+.comment__heading {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.comment__item {
+    padding: 20px 25px;
+    background-color: var(--color-bg);
+    margin-bottom: 15px;
+}
+
+.comment__content {
+    margin-bottom: 10px;
+}
+
+.comment__info {
+    text-align: right;
+    font-size: 10px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+}
+
+/* === form comment === */
+.comment .form__input input {
+    margin-bottom: 30px;
+    height: 47px;
+    border: solid 1px #ccc;
+}
+
+.form__input textarea {
+    border: solid 1px #ccc;
+}
+
+.comment__warning {
+    margin: 20px 0 25px;
+    font-size: 10px;
+    display: inline-block;
+    background-color: var(--background-1);
+}
+
+.comment__btn {
+    background-color: var(--color-txt);
+    color: var(--color-bg);
+    border: solid 1px var(--color-txt);
+}
+
+
 
 /* === start product cart === */
 .cart__header h1 {
@@ -1320,4 +1394,26 @@ h6,
     max-width: 357px;
     border: solid 1px var(--color-txt);
     background-color: var(--color-txt);
+}
+
+/* === page === */
+
+.page__container .container {
+    max-width: 700px;
+}
+
+.page__container .form__input input {
+    margin-bottom: var(--vertical-space);
+    height: 47px;
+    border: solid 1px #ccc;
+}
+
+.page__heading {
+    margin: 0;
+    margin-bottom: 32px;
+}
+
+.comment__btn {
+    margin-top: 32px;
+    min-width: 106px;
 }

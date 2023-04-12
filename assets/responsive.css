@@ -205,16 +205,16 @@
     }
 
     /* === product detail === */
-    .image__items {
+    .media__items {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
-    .image__item:first-child {
+    .media__item:first-child {
         grid-column: span 2;
     }
 
-    .image__item:last-child {
+    .media__item:last-child {
         grid-column: span 2;
     }
 
@@ -265,6 +265,15 @@
 
     .product-cart__view {
         display: flex;
+    }
+
+    /* comment */
+    .comment__form .row {
+        margin-inline: -20px;
+    }
+    
+    .comment__form .col {
+        padding-inline: 20px;
     }
 }
 

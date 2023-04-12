@@ -1,3 +1,5 @@
+{{ 'select-number.js' | asset_url | script_tag }}
+
 <div class="product-detail__container background-default pd-section">
   <div class="container">
     <div class="row {{ section.settings.media-position }}">
@@ -6,6 +8,7 @@
         <div class="product-detail__media">
           <div class="media__items d-flex">
             {% for image in product.media %}
+              {% assign numberImg = forloop.length %}
               <div class="media__item w-100">
                 <img class="w-100" src="{{ image.preview_image | img_url: 'x2000' }}" alt="image product">
               </div>
@@ -17,7 +20,7 @@
             <button class="slide-control__slide--prev cursor-pointer p-absolute">
               <img src="{{ 'chevron-left.svg' | asset_url }}" alt="sub">
             </button>
-            <input type="text" value="1/10" class="slide-control__slide--value heading-6 w-100 h-100">
+            <input type="text" value="1/{{ numberImg }}" class="slide-control__slide--value heading-6 w-100 h-100">
             <button class="slide-control__slide--next cursor-pointer p-absolute">
               <img src="{{ 'chevron-right.svg' | asset_url }}" alt="sum">
             </button>
@@ -42,18 +45,51 @@
                   </div>
                 {% when 'variant' %}
                   <div class="product-detail__variants">
-                    <h3 class="product-detail__variant--title h6">Color</h3>
-                    <div class="product-detail__variant--items d-flex">
+                    {% for option in product.options_with_values %}
+                      <div class="product-detail__variant">
+                        <h3 class="product-detail__variant--title h6">{{ option.name }}</h3>
+                        <div class="product-detail__variant--items d-flex">
+                          {% for value in option.values %}
+                            <input
+                              class="custom-radio radio-{{ value }}"
+                              type="radio"
+                              name="{{ option.name }}"
+                              id="{{ value }}"
+                            >
+                            <label
+                              class="custom-label product-detail__variant--item label-{{ value }}"
+                              for="{{ value }}"
+                            >
+                              {{ value }}
+                            </label>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="d-none">
+                    <select name="id">
                       {% for variant in product.variants %}
-                        <button class="product-detail__variant--item">{{ variant.title }}</button>
+                        <option
+                          value="{{ variant.id }}"
+                          {% if variant == product.selected_or_first_available_variant %}
+                            selected="selected"
+                          {% endif %}
+                        >
+                          {{ variant.title }} - {{ variant.price | money }}
+                        </option>
                       {% endfor %}
-                    </div>
+                    </select>
                   </div>
                 {% when 'quantity' %}
                   <div class="product-detail__quantity">
-                    <h3 class="h6">Quantity</h3>
+                    <h3 class="quantity__heading h6">Quantity</h3>
                     <div class="select__number p-relative">
-                      <button class="select__number--minus cursor-pointer p-absolute">
+                      <button
+                        type="button"
+                        class="select__number--minus cursor-pointer p-absolute"
+                        onclick="decreaseQuantity()"
+                      >
                         <img src="{{ 'minus.svg' | asset_url }}" alt="sub">
                       </button>
                       <input
@@ -63,24 +99,16 @@
                         value="1"
                         class="select__number--value heading-6 w-100 h-100"
                       >
-                      <button class="select__number--plus cursor-pointer p-absolute">
+                      <button
+                        type="button"
+                        class="select__number--plus cursor-pointer p-absolute"
+                        onclick="increaseQuantity()"
+                      >
                         <img src="{{ 'plus.svg' | asset_url }}" alt="sum">
                       </button>
                     </div>
                   </div>
                 {% when 'buy-button' %}
-                  <select name="id">
-                    {% for variant in product.variants %}
-                      <option
-                        value="{{ variant.id }}"
-                        {% if variant == product.selected_or_first_available_variant %}
-                          selected="selected"
-                        {% endif %}
-                      >
-                        {{ variant.title }} - {{ variant.price | money }}
-                      </option>
-                    {% endfor %}
-                  </select>
                   <input class="btn product-detail__addtocart w-100" type="submit" value="Add to cart">
                   <input class="btn product-detail__buynow w-100" type="submit" value="Buy it now">
 
@@ -124,7 +152,17 @@
   </div>
 </div>
 
-.
+<style>
+  {% for option in product.options_with_values %}
+    {% for value in option.values %}
+      .radio-{{ value }}:checked ~ .label-{{ value }} {
+        background-color: var(--color-txt);
+        color: var(--color-bg);
+      }
+    {% endfor %}
+  {% endfor %}
+</style>
+
 {% schema %}
 {
   "name": "Product infomation",

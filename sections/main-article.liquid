@@ -1,50 +1,122 @@
-<div class="article__image">
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'image' %}
-        <div class="article__img--item {{ block.settings.image-height }}">
-          <img
-            class="w-100 h-100 d-block object-fit-cover"
-            src="{{ article.image | img_url: 'x2000' }}"
-            alt="image article"
-          >
-        </div>
-      {% when 'image' %}
+<div class="article__container background-default">
+  <div class="article__image">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'image' %}
+          <div class="article__img--item {{ block.settings.image-height }}">
+            <img
+              class="w-100 h-100 d-block object-fit-cover"
+              src="{{ article.image | img_url: 'x2000' }}"
+              alt="image article"
+            >
+          </div>
+        {% when 'image' %}
 
-    {% endcase %}
-  {% endfor %}
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="article__content d-flex justify-center">
-        <div class="article__container pd-section">
-          {% for block in section.blocks %}
-            {% case block.type %}
-              {% when 'title' %}
-                <h1 class="article__heading h2">{{ article.title }}</h1>
-                <span class="article__date d-block">{{ article.created_at | date: '%a, %b %d, %y' | upcase }}</span>
-              {% when 'share' %}
-                <div class="article__share d-flex align-center">
-                  <img src="{{ 'share.svg' | asset_url }}" alt="share" style="margin-right: 8px;">
-                  <span class="h5">Share</span>
-                </div>
-              {% when 'content' %}
-                <div class="article__context h4">
-                  {{ article.content }}
-                </div>
-            {% endcase %}
-          {% endfor %}
-          <div class="article__footer text-center d-flex align-center justify-center">
-            <img src="{{ 'arrow-left.svg' | asset_url }}" alt="back" style="margin-right: 8px;">
-            <a class="h5" href="{{ blog.url }}">Back to blog</a>
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="article__content d-flex justify-center">
+          <div class="article__box pd-section">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <h1 class="article__heading h2">{{ article.title }}</h1>
+                  <span class="article__date d-block">{{ article.created_at | date: '%a, %b %d, %y' | upcase }}</span>
+                {% when 'share' %}
+                  <div class="article__share d-flex align-center">
+                    <img src="{{ 'share.svg' | asset_url }}" alt="share" style="margin-right: 8px;">
+                    <span class="h5">Share</span>
+                  </div>
+                {% when 'content' %}
+                  <div class="article__context h4">
+                    {{ article.content }}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+            <div class="article__footer text-center d-flex align-center justify-center">
+              <img src="{{ 'arrow-left.svg' | asset_url }}" alt="back" style="margin-right: 8px;">
+              <a class="h5" href="{{ blog.url }}">Back to blog</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  {% if article.comments_enabled? == true %}
+    <div class="comment pd-section">
+      <div class="container">
+        <div class="article__box">
+          <div class="blog__comment">
+            <div class="comment__container">
+              <h3 class="comment__heading">{{ article.comments_count }} comment</h3>
+              <div class="comment__items">
+                {% for item in article.comments %}
+                  <div class="comment__item">
+                    <span class="comment__content d-block h4">{{ item.content }}</span>
+                    <span class="comment__info d-block">{{ item.created_at | date: '%a, %b %d, %y' | upcase }} - {{ item.author }}</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="comment__form">
+              <h3 class="h3 form__heading">Leave a comment</h3>
+                <div class="form__container">
+                  {% form 'new_comment', article %}
+                    <div class="row">
+                      <div class="col" style="--w-md: 6;">
+                        <div class="w-100 form__input">
+                          <input
+                            class="btn w-100"
+                            type="text"
+                            placeholder="Name"
+                            name="comment[author]"
+                            value="{{ form.author }}"
+                          >
+                        </div>
+                      </div>
+                      <div class="col" style="--w-md: 6;">
+                        <div class="w-100 form__input">
+                          <input
+                            class="btn w-100"
+                            type="email"
+                            placeholder="Email"
+                            name="comment[email]"
+                            value="{{ form.email }}"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col" style="--w-md: 12;">
+                        <div class="w-100 form__input">
+                          <textarea class="btn w-100" placeholder="Comment" name="comment[body]" id="" rows="5">{{ form.body }}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <p class="comment__warning">
+                          Please note, comments need to be approved before they are published.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <button type="submit" value="Post" class="btn comment__btn">Post comment</button>
+                      </div>
+                    </div>
+                  {% endform %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
-
 
 {% schema %}
 {
@@ -84,60 +156,59 @@
       ]
     },
     {
-        "name": "Title",
-        "type": "title",
-        "settings": [
-            {
-                "type": "checkbox",
-                "id": "show-date",
-                "label": "Show date",
-                "default": true
-            },
-            {
-                "type": "checkbox",
-                "id": "show-author",
-                "label": "Show author",
-                "default": false
-            }
-        ]
+      "name": "Title",
+      "type": "title",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show-date",
+          "label": "Show date",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show-author",
+          "label": "Show author",
+          "default": false
+        }
+      ]
     },
     {
-        "name": "Share",
-        "type": "share",
-        "settings": [
-            {
-                "type": "text",
-                "id": "text-share",
-                "label": "Text",
-                "default": "Share"
-            }
-        ]
+      "name": "Share",
+      "type": "share",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text-share",
+          "label": "Text",
+          "default": "Share"
+        }
+      ]
     },
     {
-        "name": "Content",
-        "type": "content",
-        "settings": [
-        ]
+      "name": "Content",
+      "type": "content",
+      "settings": []
     }
   ],
   "presets": [
     {
-        "name": "Blog post",
-        "settings": {},
-        "blocks": [
-            {
-                "type": "image"
-            },
-            {
-                "type": "title"
-            },
-            {
-                "type": "share"
-            },
-            {
-                "type": "content"
-            }
-        ]
+      "name": "Blog post",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "share"
+        },
+        {
+          "type": "content"
+        }
+      ]
     }
   ]
 }
