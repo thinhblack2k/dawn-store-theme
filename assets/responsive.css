@@ -242,6 +242,30 @@
         text-align: center;
         max-width: 700px;
     }
+
+    /* === cart === */
+    .cart__item {
+        grid-template-columns: auto 1fr auto auto;
+        grid-template-areas: "image title quantity total";
+    }
+
+    .cart__content .cart__image {
+        width: 100px;
+        height: 100px;
+        margin-right: 24px;
+    }
+
+    .cart__quantity {
+        width: 300px;
+    }
+
+    .cart__footer {
+        text-align: right;
+    }
+
+    .product-cart__view {
+        display: flex;
+    }
 }
 
 @media (min-width: 992px) {

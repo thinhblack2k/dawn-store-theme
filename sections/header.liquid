@@ -114,8 +114,16 @@
           </a>
         </div>
         <div class="header__action--item d-flex align-center">
-          <a class="header__action--link d-inline-block" href="#">
-            <img class="action__icon svg__icon d-block" src="{{ 'icon-cart.svg' | asset_url }}" alt="cart">
+          <a class="header__action--link d-inline-block" href="/cart">
+            {% if cart.item_count >= 1 %}
+              <div class="icon-cart d-flex align-center justify-center p-relative">
+                <img class="action__icon svg__icon d-block" src="{{ 'cart-open.svg' | asset_url }}" alt="cart">
+                <span class="cart-count p-absolute d-flex align-center justify-center h6">{{ cart.item_count }}</span>
+              </div>
+
+            {% else %}
+              <img class="action__icon svg__icon d-block" src="{{ 'icon-cart.svg' | asset_url }}" alt="cart">
+            {% endif %}
           </a>
         </div>
       </div>
