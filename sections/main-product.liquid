@@ -35,13 +35,16 @@
                 {% when 'title' %}
                   <h1 class="product-detail__name">
                     {{ product.title }}
-                  </h1>
+                  </h1><img class="d-block w-100 svg__icon" src="//cdn.shopify.com/s/files/1/0746/4982/9689/files/image_9_ebab8cca-9fbf-4f0e-a9dc-e9cbc568a587_medium.png?v=1680360171" alt="Logo">
                 {% when 'price' %}
-                  <div class="product-detail__price d-block">
+                  <div class="product-detail__price d-flex align-center">
                     {% if product.compare_at_price != blank %}
                       <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
                     {% endif %}
                     <span class="product__price--new h4">{{ product.price | money }}</span>
+                    {% if product.compare_at_price != blank %}
+                    <span class="product__sale h6"> Sale </span>
+                    {% endif %}
                   </div>
                 {% when 'variant' %}
                   <div class="product-detail__variants">

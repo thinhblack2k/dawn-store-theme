@@ -1,0 +1,176 @@
+<div class="video__container {{ section.settings.color-scheme }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="video__heading">
+        <h2 class="{{ section.settings.heading-size }}">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+    <div class="video__box">
+      <div class="video__image--cover p-relative">
+        {% if section.settings.image_cover != blank %}
+          <img
+            class="d-block object-fit-cover w-100 h-100"
+            src="{{ section.settings.image_cover | img_url: 'x2000' }}"
+            alt="video"
+          >
+        {% else %}
+          <div class="img-placeholder__video img__placeholder img__placeholder--bd">
+            {{ 'collection-2' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+        <button class="icon-played p-absolute">
+          <img src="{{ 'icon-played.svg' | asset_url }}" alt="">
+        </button>
+      </div>
+      <div class="video__origin d-none">
+        <iframe
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/pWadpgMM3Tc"
+          title="See You Again - Wiz Khalifa (Mix Lyrics) Ft. Charlie Puth / SIA, Christina Perri, Ellie Goulding,…"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .video__container {
+      padding-top: {{ section.settings.pd-top }}px;
+      padding-bottom: {{ section.settings.pd-bottom }}px;
+  }
+
+  {% if section.settings.make-full-width == true %}
+  .video__container .container {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 0;
+  }
+
+  {% endif %}
+</style>
+
+<script>
+  const iconPlay = document.querySelector('.icon-played');
+  const videoShow = document.querySelector('.video__origin');
+  const videoPlaceholder = document.querySelector('.video__image--cover');
+
+  iconPlay.addEventListener('click', function () {
+    videoShow.style.display = 'block';
+    videoPlaceholder.style.display = 'none';
+  });
+</script>
+
+{% schema %}
+{
+  "name": "video",
+  "tag": "section",
+  "class": "video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading-size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "large"
+        },
+        {
+          "value": "h2",
+          "label": "medium"
+        },
+        {
+          "value": "h3",
+          "label": "small"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_cover",
+      "label": "Cover image"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Video plays in the page."
+    },
+    {
+      "type": "checkbox",
+      "id": "make-full-width",
+      "label": "Make section full width",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color-scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-default",
+          "label": "Background default"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        }
+      ],
+      "default": "background-default"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pd-top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "pd-bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "video",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

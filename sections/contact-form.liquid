@@ -1,7 +1,8 @@
 <div class="page__container background-default pd-section">
   <div class="container">
     <div class="form__container">
-      {% form 'customer' %}
+      {% form 'contact' %}
+        {{ form.errors | default_errors }}
         <div class="row">
           <div class="col" style="--w-md: 6;">
             <div class="w-100 form__input">
@@ -9,7 +10,7 @@
                 class="btn w-100"
                 type="text"
                 placeholder="Name"
-                name="page[name]"
+                name="contact[last_name]"
                 value="{{ form.author }}"
               >
             </div>
@@ -20,8 +21,7 @@
                 class="btn w-100"
                 type="email"
                 placeholder="Email"
-                name="page[email]"
-                value="{{ form.email }}"
+                name="contact[email]"
               >
             </div>
           </div>
@@ -33,7 +33,7 @@
                 class="btn w-100"
                 type="text"
                 placeholder="Phone"
-                name="page[phone]"
+                name="contact[phone]"
                 value="{{ form.phone }}"
               >
             </div>
@@ -45,7 +45,7 @@
               <textarea
                 class="btn w-100"
                 placeholder="Comment"
-                name="page[body]"
+                name="contact[body]"
                 id=""
                 rows="5"
               >{{ form.body }}</textarea>
