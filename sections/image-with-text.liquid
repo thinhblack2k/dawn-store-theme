@@ -11,7 +11,7 @@
           alt=""
         >
       {% else %}
-        {{ 'image' | placeholder_svg_tag }}
+        <div class="img__placeholder img__placeholder--pd">{{ 'image' | placeholder_svg_tag }}</div>
       {% endif %}
     </div>
     <div
@@ -293,7 +293,7 @@
   ],
   "presets": [
     {
-      "name": "Image text",
+      "name": "Image width text",
       "blocks": [
         {
           "type": "heading"

@@ -1,3 +1,14 @@
+<style>
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('{{ 'icon-chevron-down.svg' | asset_url }}');
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+  }
+</style>
+
 <div class="footer__contaier {{ section.settings.background-color }} ">
   <div class="footer__top">
     <div class="container">
@@ -8,7 +19,11 @@
               {% when 'information' %}
                 <div class="col pd-top" style="--w-md: 4;">
                   <div class="footer__logo">
-                    <img class="w-100 d-block svg__icon" src="{{ block.settings.logo-brand | img_url: 'medium' }}" alt="">
+                    <img
+                      class="w-100 d-block svg__icon"
+                      src="{{ block.settings.logo-brand | img_url: 'medium' }}"
+                      alt=""
+                    >
                   </div>
                   {% if block.settings['show-social'] == true %}
                     <ul class="social__items d-flex align-center">
@@ -75,8 +90,10 @@
           {% if section.settings['show-email-signup'] == true %}
             <div class="col" style="--w-md: 8;">
               <div class="footer__subscribe">
-                <h3 class="block__heading">{{ section.settings.heading-signup }}</h3>
-                <div class="email-signup__form d-flex">
+                <h3 class="block__heading text-center">
+                  {{ section.settings['heading-signup'] }}
+                </h3>
+                <div class="email-signup__form justify-center d-flex">
                   <div class="w-100 form__container p-relative">
                     {% form 'customer' %}
                       <input
@@ -94,9 +111,9 @@
               </div>
             </div>
           {% endif %}
-          {% if section.settings.show-social-icon == true %}
+          {% if section.settings['show-social-icon'] == true %}
             <div class="col" style="--w-md: 4;">
-              <ul class="social__items d-flex align-center">
+              <ul class="social__items d-flex {% if section.settings.show-email-signup == false %} text-center {% endif %}">
                 <li class="social__item">
                   <a class="" href="#">
                     <img class="svg__icon d-block" src="{{ "twitter.svg" | asset_url }}" alt="">
@@ -131,8 +148,53 @@
   </div>
   <div class="footer__bottom pd-top">
     <div class="container">
-      <div class="row pd-40 p-relative">
-        <div class="col footer__select-box d-flex justify-center" style="--w-lg:4;"></div>
+      <div class="row pd-40 p-relative space-between align-center">
+        <div class="col footer__select-box d-flex" style="--w-md:4;">
+          <div class="footer__select--item">
+            <label for="select-country" class="select__label h6">Country/region</label>
+            <div class="select__box">
+              <select class="btn" name="country" id="select-country">
+                <option value="1">Canada (CAD $)</option>
+                <option value="2">VietNam (VNĐ)</option>
+                <option value="3">Kored (WON ₩)</option>
+                <option value="4">Japan (JPY ¥)</option>
+              </select>
+            </div>
+          </div>
+          <div class="footer__select--item">
+            <label for="select-language" class="select__label h6">Language</label>
+            <div class="select__box">
+              <select class="btn" name="language" id="select-language">
+                <option value="1">English</option>
+                <option value="2">Vietnam</option>
+                <option value="3">Kored</option>
+                <option value="4">USA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="--w-md:4;">
+          <ul class="footer__listpay d-flex justify-center align-center">
+            <li class="listpay__item d-flex">
+              <img src="{{ 'shop-pay.png' | asset_url }}" alt="shop pay">
+            </li>
+            <li class="listpay__item d-flex">
+              <img src="{{ 'visa.png' | asset_url }}" alt="visa">
+            </li>
+            <li class="listpay__item d-flex">
+              <img src="{{ 'mastercard.png' | asset_url }}" alt="mastercard">
+            </li>
+            <li class="listpay__item d-flex">
+              <img src="{{ 'apple-pay.png' | asset_url }}" alt="apple pay">
+            </li>
+            <li class="listpay__item d-flex">
+              <img src="{{ 'google-pay.png' | asset_url }}" alt="google pay">
+            </li>
+            <li class="listpay__item d-flex">
+              <img src="{{ 'amex.png' | asset_url }}" alt="amex">
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="row">
         <div class="col text-center">
@@ -141,7 +203,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <style>
@@ -215,6 +276,38 @@
       "id": "show-social-icon",
       "label": "Show social media icon",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "COUNTRY/REGION SELECTOR",
+      "info": "To add a country/region, go to your"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-country",
+      "label": "Enable country/region selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "LANGUAGE SELECTOR",
+      "info": "To add a language, go to your"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-language",
+      "label": "Enable language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "PAYMENT METHODS"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-payment",
+      "label": "Show payment icons",
+      "default": true
     },
     {
       "type": "header",

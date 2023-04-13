@@ -5,9 +5,16 @@
             "settings": {
 
             }
+        },
+        "contact-form": {
+            "type": "contact-form",
+            "settings": {
+
+            }
         }
     },
     "order": [
-        "main-page"
+        "main-page",
+        "contact-form"
     ]
 }

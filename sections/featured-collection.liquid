@@ -13,17 +13,29 @@
       </div>
     </div>
     <div class="row">
-      {%- for product in section.settings.list_product.products limit: section.settings['product-limit'] -%}
-        <div class="col" style="--w:6; --w-lg: calc(12 / {{ section.settings.product-row }});">
-          {% render 'product-card', product: product %}
-        </div>
-      {%- endfor -%}
+      {% if section.settings.list_product != blank %}
+        {%- for product in section.settings.list_product.products limit: section.settings['product-limit'] -%}
+          <div class="col" style="--w:6; --w-md: calc(12 / {{ section.settings.product-row }});">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      {% else %}
+        {% for item in (1..4) %}
+          <div class="col" style="--w:6; --w-md: 3;">
+            {% render 'product-card' %}
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
     {% if section.settings['show-btn'] == true %}
       <div class="row">
         <div class="col">
           <div class="text-center">
-            <a class="btn btn__view--all {{ section.settings.style-viewall }}" href="{{ section.settings.list_product.url }}">View all</a>
+            <a
+              class="btn btn__view--all {{ section.settings.style-viewall }}"
+              href="{{ section.settings.list_product.url }}"
+              >View all</a
+            >
           </div>
         </div>
       </div>

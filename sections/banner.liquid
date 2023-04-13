@@ -1,6 +1,6 @@
 <div class="banner__box d-flex p-relative {{ section.settings.banner_height }} w-100">
   {% if section.settings.first_image == blank and section.settings.second_image == blank %}
-    <div class="image__banner image__item h-100 p-absolute" style="--w: 12;">
+    <div class="image__banner img__placeholder image__item h-100 p-absolute" style="--w: 12;">
       {{ 'lifestyle-2' | placeholder_svg_tag }}
     </div>
   {% else %}

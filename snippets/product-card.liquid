@@ -1,39 +1,76 @@
-<div
-  class="
-    product__card h-100 d-flex flex-column
-    {{ settings.style-card }}
-    {% if settings.style-card == 'product-card' -%}
-      {{ settings.background-color-card }}
-    {%- endif %}
-  "
->
-  <div class="product__image p-relative {{ section.settings.image-ratio }}">
-    <a href="{{ product.url }}">
-      <img
-        class="w-100 h-100 d-block object-fit-cover"
-        src="{{ product.featured_image | img_url: '1200x' }}"
-        alt="product"
-      >
-      {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
-        <span class="product__sale heading-6 p-absolute"> Sale </span>
-      {%- endif -%}
-    </a>
+{% if product != blank %}
+  <div
+    class="
+      product__card h-100 d-flex flex-column
+      {{ settings.style-card }}
+      {% if settings.style-card == 'product-card' -%}
+        {{ settings.background-color-card }}
+      {%- endif %}
+    "
+  >
+    <div class="product__image p-relative {{ section.settings.image-ratio }}">
+      <a href="{{ product.url }}">
+        <img
+          class="w-100 h-100 d-block object-fit-cover"
+          src="{{ product.featured_image | img_url: '1200x' }}"
+          alt="product"
+        >
+        {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
+          <span class="product__sale heading-6 p-absolute"> Sale </span>
+        {%- endif -%}
+      </a>
+    </div>
+    <div class="product__info d-flex flex-column flex-1">
+      <a href="{{ product.url }}">
+        <h3 class="product__name h5">{{ product.title }}</h3>
+      </a>
+      <a href="{{ product.url }}">
+        <div class="product__price align-center">
+          {% if product.compare_at_price != blank %}
+            <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
+          {% endif %}
+          <span class="product__price--new h4">{{ product.price | money }}</span>
+        </div>
+      </a>
+      <div class="flex-1"></div>
+      {% if section.settings['add-button'] %}
+        <button class="product__btn btn" type="submit">Add to card</button>
+      {% endif %}
+    </div>
   </div>
-  <div class="product__info d-flex flex-column flex-1">
-    <a href="{{ product.url }}">
-      <h3 class="product__name h5">{{ product.title }}</h3>
-    </a>
-    <a href="{{ product.url }}">
-      <div class="product__price align-center">
-        {% if product.compare_at_price != blank %}
-          <del class="product__price--old h5">{{ product.compare_at_price | money }}</del>
-        {% endif %}
-        <span class="product__price--new h4">{{ product.price | money }}</span>
-      </div>
-    </a>
-    <div class="flex-1"></div>
-    {% if section.settings['add-button'] %}
-      <button class="product__btn btn" type="submit">Add to card</button>
-    {% endif %}
+{% else %}
+  <div
+    class="
+      product__card h-100 d-flex flex-column
+      {{ settings.style-card }}
+      {% if settings.style-card == 'product-card' -%}
+        {{ settings.background-color-card }}
+      {%- endif %}
+    "
+  >
+    <div class="product__image p-relative {{ section.settings.image-ratio }}">
+      <a href="{{ product.url }}">
+        <div class="img__placeholder img__placeholder--pd">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+        {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
+          <span class="product__sale heading-6 p-absolute"> Sale </span>
+        {%- endif -%}
+      </a>
+    </div>
+    <div class="product__info d-flex flex-column flex-1">
+      <a href="{{ product.url }}">
+        <h3 class="product__name h5">Name product</h3>
+      </a>
+      <a href="{{ product.url }}">
+        <div class="product__price align-center">
+          <span class="product__price--new h4">00.00 $</span>
+        </div>
+      </a>
+      <div class="flex-1"></div>
+      {% if section.settings['add-button'] %}
+        <button class="product__btn btn" type="submit">Add to card</button>
+      {% endif %}
+    </div>
   </div>
-</div>
+{% endif %}

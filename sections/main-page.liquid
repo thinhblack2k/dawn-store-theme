@@ -6,65 +6,6 @@
         {{ page.content }}
       </div>
     </div>
-    <div class="form__container pd-top">
-      {% form 'customer' %}
-        <div class="row">
-          <div class="col" style="--w-md: 6;">
-            <div class="w-100 form__input">
-              <input
-                class="btn w-100"
-                type="text"
-                placeholder="Name"
-                name="page[name]"
-                value="{{ form.author }}"
-              >
-            </div>
-          </div>
-          <div class="col" style="--w-md: 6;">
-            <div class="w-100 form__input">
-              <input
-                class="btn w-100"
-                type="email"
-                placeholder="Email"
-                name="page[email]"
-                value="{{ form.email }}"
-              >
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" style="--w-md: 12;">
-            <div class="w-100 form__input">
-              <input
-                class="btn w-100"
-                type="text"
-                placeholder="Phone"
-                name="page[phone]"
-                value="{{ form.phone }}"
-              >
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" style="--w-md: 12;">
-            <div class="w-100 form__input">
-              <textarea
-                class="btn w-100"
-                placeholder="Comment"
-                name="page[body]"
-                id=""
-                rows="5"
-              >{{ form.body }}</textarea>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <button type="submit" class="btn comment__btn">Send</button>
-          </div>
-        </div>
-      {% endform %}
-    </div>
   </div>
 </div>
 
