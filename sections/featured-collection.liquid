@@ -30,9 +30,9 @@
     {% if section.settings['show-btn'] == true %}
       <div class="row">
         <div class="col">
-          <div class="text-center">
+          <div class="text-center pd-top">
             <a
-              class="btn btn__view--all {{ section.settings.style-viewall }}"
+              class="btn btn__view--all  {{ section.settings.style-viewall }}"
               href="{{ section.settings.list_product.url }}"
               >View all</a
             >
@@ -77,11 +77,11 @@
       "id": "heading-size",
       "options": [
         {
-          "value": "h2",
+          "value": "h1",
           "label": "large"
         },
         {
-          "value": "h8",
+          "value": "h2",
           "label": "medium"
         },
         {
@@ -89,7 +89,7 @@
           "label": "small"
         }
       ],
-      "default": "h8",
+      "default": "h2",
       "label": "Heading size"
     },
     {

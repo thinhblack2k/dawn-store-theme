@@ -31,6 +31,10 @@
     object-fit: cover;
 }
 
+.ratio-1 {
+    aspect-ratio: 1;
+}
+
 .text-left {
     text-align: left;
     justify-content: flex-start;

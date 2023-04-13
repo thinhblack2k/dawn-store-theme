@@ -55,6 +55,9 @@
                               type="radio"
                               name="{{ option.name }}"
                               id="{{ value }}"
+                              {% if forloop.index == 1 %}
+                                checked = "checked"
+                              {% endif %}
                             >
                             <label
                               class="custom-label product-detail__variant--item label-{{ value }}"

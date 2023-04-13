@@ -34,43 +34,35 @@
       </a>
       <div class="flex-1"></div>
       {% if section.settings['add-button'] %}
-        <button class="product__btn btn" type="submit">Add to card</button>
+        {% form 'product', product %}
+          <!-- form content -->
+          <div class="d-none">
+            <select name="id">
+              {% for variant in product.variants %}
+                <option
+                  value="{{ variant.id }}"
+                  {% if variant == product.selected_or_first_available_variant %}
+                    selected="selected"
+                  {% endif %}
+                >
+                  {{ variant.title }} - {{ variant.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+            <input type="text" name="quantity" min="1" value="1">
+          </div>
+          <button class="product__btn btn w-100" type="submit">Add to card</button>
+        {% endform %}
       {% endif %}
     </div>
   </div>
 {% else %}
-  <div
-    class="
-      product__card h-100 d-flex flex-column
-      {{ settings.style-card }}
-      {% if settings.style-card == 'product-card' -%}
-        {{ settings.background-color-card }}
-      {%- endif %}
-    "
-  >
-    <div class="product__image p-relative {{ section.settings.image-ratio }}">
-      <a href="{{ product.url }}">
-        <div class="img__placeholder img__placeholder--pd">
-          {{ 'image' | placeholder_svg_tag }}
-        </div>
-        {%- if product.compare_at_price != blank and product.price < product.compare_at_price -%}
-          <span class="product__sale heading-6 p-absolute"> Sale </span>
-        {%- endif -%}
-      </a>
-    </div>
-    <div class="product__info d-flex flex-column flex-1">
-      <a href="{{ product.url }}">
-        <h3 class="product__name h5">Name product</h3>
-      </a>
-      <a href="{{ product.url }}">
-        <div class="product__price align-center">
-          <span class="product__price--new h4">00.00 $</span>
-        </div>
-      </a>
-      <div class="flex-1"></div>
-      {% if section.settings['add-button'] %}
-        <button class="product__btn btn" type="submit">Add to card</button>
-      {% endif %}
-    </div>
+  <div class="product__card">
+    <a href="#">
+      <div class="product__content product__placeholder ratio-1 d-flex flex-column align-center justify-center">
+        <h3 class="product__name w-100 h4">Example product title</h3>
+        <span class="product__price w-100 h6">20 VND</span>
+      </div>
+    </a>
   </div>
 {% endif %}

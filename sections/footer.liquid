@@ -150,51 +150,57 @@
     <div class="container">
       <div class="row pd-40 p-relative space-between align-center">
         <div class="col footer__select-box d-flex" style="--w-md:4;">
-          <div class="footer__select--item">
-            <label for="select-country" class="select__label h6">Country/region</label>
-            <div class="select__box">
-              <select class="btn" name="country" id="select-country">
-                <option value="1">Canada (CAD $)</option>
-                <option value="2">VietNam (VNĐ)</option>
-                <option value="3">Kored (WON ₩)</option>
-                <option value="4">Japan (JPY ¥)</option>
-              </select>
+          {% if section.settings['enable-country'] == true %}
+            <div class="footer__select--item">
+              <label for="select-country" class="select__label h6">Country/region</label>
+              <div class="select__box">
+                <select class="btn" name="country" id="select-country">
+                  <option value="1">Canada (CAD $)</option>
+                  <option value="2">VietNam (VNĐ)</option>
+                  <option value="3">Kored (WON ₩)</option>
+                  <option value="4">Japan (JPY ¥)</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="footer__select--item">
-            <label for="select-language" class="select__label h6">Language</label>
-            <div class="select__box">
-              <select class="btn" name="language" id="select-language">
-                <option value="1">English</option>
-                <option value="2">Vietnam</option>
-                <option value="3">Kored</option>
-                <option value="4">USA</option>
-              </select>
+          {% endif %}
+          {% if section.settings['enable-language'] == true %}
+            <div class="footer__select--item">
+              <label for="select-language" class="select__label h6">Language</label>
+              <div class="select__box">
+                <select class="btn" name="language" id="select-language">
+                  <option value="1">English</option>
+                  <option value="2">Vietnam</option>
+                  <option value="3">Kored</option>
+                  <option value="4">USA</option>
+                </select>
+              </div>
             </div>
+          {% endif %}
+        </div>
+        {% if section.settings['show-payment'] == true %}
+          <div class="col" style="--w-md:4;">
+            <ul class="footer__listpay d-flex justify-center align-center">
+              <li class="listpay__item d-flex">
+                <img src="{{ 'shop-pay.png' | asset_url }}" alt="shop pay">
+              </li>
+              <li class="listpay__item d-flex">
+                <img src="{{ 'visa.png' | asset_url }}" alt="visa">
+              </li>
+              <li class="listpay__item d-flex">
+                <img src="{{ 'mastercard.png' | asset_url }}" alt="mastercard">
+              </li>
+              <li class="listpay__item d-flex">
+                <img src="{{ 'apple-pay.png' | asset_url }}" alt="apple pay">
+              </li>
+              <li class="listpay__item d-flex">
+                <img src="{{ 'google-pay.png' | asset_url }}" alt="google pay">
+              </li>
+              <li class="listpay__item d-flex">
+                <img src="{{ 'amex.png' | asset_url }}" alt="amex">
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="col" style="--w-md:4;">
-          <ul class="footer__listpay d-flex justify-center align-center">
-            <li class="listpay__item d-flex">
-              <img src="{{ 'shop-pay.png' | asset_url }}" alt="shop pay">
-            </li>
-            <li class="listpay__item d-flex">
-              <img src="{{ 'visa.png' | asset_url }}" alt="visa">
-            </li>
-            <li class="listpay__item d-flex">
-              <img src="{{ 'mastercard.png' | asset_url }}" alt="mastercard">
-            </li>
-            <li class="listpay__item d-flex">
-              <img src="{{ 'apple-pay.png' | asset_url }}" alt="apple pay">
-            </li>
-            <li class="listpay__item d-flex">
-              <img src="{{ 'google-pay.png' | asset_url }}" alt="google pay">
-            </li>
-            <li class="listpay__item d-flex">
-              <img src="{{ 'amex.png' | asset_url }}" alt="amex">
-            </li>
-          </ul>
-        </div>
+        {% endif %}
       </div>
       <div class="row">
         <div class="col text-center">

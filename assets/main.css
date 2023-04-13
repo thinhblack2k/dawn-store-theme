@@ -85,6 +85,7 @@ h6,
 .h7 {
     font-size: 1.8rem;
     line-height: 0.83;
+    font-weight: 600;
     letter-spacing: 0.04em;
 }
 
@@ -322,7 +323,7 @@ h6,
 }
 
 .person-login {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .person-login span {
@@ -346,8 +347,8 @@ h6,
 
 /* menu button */
 .header__btn {
-    width: 100%;
-    max-width: 82px;
+    width: 82px;
+    
 }
 
 .navbar__icons {
@@ -643,6 +644,10 @@ h6,
     margin-bottom: 10px !important;
 }
 
+.product__placeholder {
+    padding: 13px 10px;
+}
+
 /* style image */
 .adapt-image {
 
@@ -656,9 +661,9 @@ h6,
     aspect-ratio: 1;
 }
 
-.btn__view--all {
+/* .btn__view--all {
     margin-top: var(--vertical-space);
-}
+} */
 
 /* === image with text === */
 
@@ -961,6 +966,8 @@ h6,
     opacity: 75%;
     outline: none;
     letter-spacing: 0.03em;
+    background-color: var(--color-bg);
+    color: var(--color-txt);
     border: solid 1px var(--color-border);
 }
 
