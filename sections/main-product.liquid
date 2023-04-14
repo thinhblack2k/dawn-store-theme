@@ -35,7 +35,7 @@
                 {% when 'title' %}
                   <h1 class="product-detail__name">
                     {{ product.title }}
-                  </h1><img class="d-block w-100 svg__icon" src="//cdn.shopify.com/s/files/1/0746/4982/9689/files/image_9_ebab8cca-9fbf-4f0e-a9dc-e9cbc568a587_medium.png?v=1680360171" alt="Logo">
+                  </h1>
                 {% when 'price' %}
                   <div class="product-detail__price d-flex align-center">
                     {% if product.compare_at_price != blank %}
@@ -43,7 +43,7 @@
                     {% endif %}
                     <span class="product__price--new h4">{{ product.price | money }}</span>
                     {% if product.compare_at_price != blank %}
-                    <span class="product__sale h6"> Sale </span>
+                      <span class="product__sale h6"> Sale </span>
                     {% endif %}
                   </div>
                 {% when 'variant' %}
@@ -59,7 +59,7 @@
                               name="{{ option.name }}"
                               id="{{ value }}"
                               {% if forloop.index == 1 %}
-                                checked = "checked"
+                                checked="checked"
                               {% endif %}
                             >
                             <label
@@ -114,9 +114,15 @@
                       </button>
                     </div>
                   </div>
-                {% when 'buy-button' %}
-                  <input class="btn product-detail__addtocart w-100" type="submit" value="Add to cart">
-                  <input class="btn product-detail__buynow w-100" type="submit" value="Buy it now">
+                {% when 'buy-button' -%}
+                  <input
+                    class="btn {% if item.settings.show-buy-now == true %} product-detail__addtocart {% else %} product-detail__buynow {% endif %} w-100"
+                    type="submit"
+                    value="Add to cart"
+                  >
+                  {%- if item.settings['show-buy-now'] == true -%}
+                    <input class="btn product-detail__buynow w-100" type="submit" value="Buy it now">
+                  {%- endif -%}
 
                 {% when 'description' %}
                   <div class="product-detail__description">
@@ -244,8 +250,9 @@
       "settings": [
         {
           "type": "checkbox",
-          "id": "show-add-to-cart",
+          "id": "show-buy-now",
           "label": "Show dynamic checkout buttons",
+          "default": true,
           "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay."
         }
       ]
@@ -325,6 +332,9 @@
         }
       ]
     }
-  ]
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header"] 
+  }
 }
 {% endschema %}

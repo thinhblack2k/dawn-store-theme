@@ -814,7 +814,7 @@ h6,
     background-color: transparent;
     border: solid 1px var(--color-border);
     height: 47px;
-    color: var(--color-txt);
+    color: var(--color-placeholder);
 }
 
 .icon__input {
@@ -967,11 +967,10 @@ h6,
     padding-right: 40px;
     height: 47px;
     font-size: 13px;
-    opacity: 75%;
     outline: none;
     letter-spacing: 0.03em;
     background-color: var(--color-bg);
-    color: var(--color-txt);
+    color: var(--color-placeholder);
     border: solid 1px var(--color-border);
 }
 
@@ -1080,6 +1079,7 @@ h6,
 
 .product-detail__variant--items {
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .product-detail__variant--item {
@@ -1110,7 +1110,7 @@ h6,
     color: var(--color-txt);
     border: solid 1px var(--color-txt);
     background-color: var(--color-bg);
-    margin-top: 8px;
+    margin-top: 16px;
 }
 
 .product-detail__buynow {
@@ -1499,8 +1499,3 @@ h6,
     filter:var(--color-svg);
     cursor: pointer;
 }
-
-/* .icon-played img {
-    border-radius: 50%;
-    border: solid 1px var(--color-border);
-} */

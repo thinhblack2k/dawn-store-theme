@@ -135,11 +135,6 @@
           "label": "Image"
         },
         {
-          "type": "video_url",
-          "id": "video_url",
-          "label": "Video url"
-        },
-        {
           "type": "text",
           "id": "description",
           "default": "Describe the video",
@@ -164,6 +159,9 @@
         }
       ]
     }
-  ]
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header"]
+  }
 }
 {% endschema %}
